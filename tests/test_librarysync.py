@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import contextlib
+import io
 import os
+import shutil
 import sys
 import tempfile
 import time
@@ -10,7 +13,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from librarysync.copying import CopyOptions, plan_chunks, run_copy
+from librarysync.copying import CopyOptions, build_file_actions, plan_chunks, run_copy
 from librarysync.ledger import (
     is_reportable_relative_path,
     load_records,
@@ -108,19 +111,25 @@ class LibrarySyncTests(unittest.TestCase):
             report = render_report(str(cache))
             self.assertIn("conflicts: 1", report)
 
-            run_copy(
-                CopyOptions(
-                    source=str(source),
-                    target=str(target),
-                    source_role="laptop",
-                    target_role="archive",
-                    cache_dir=str(cache),
-                    execute=True,
-                    yes=True,
-                    replace_conflicts=False,
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                run_copy(
+                    CopyOptions(
+                        source=str(source),
+                        target=str(target),
+                        source_role="laptop",
+                        target_role="archive",
+                        cache_dir=str(cache),
+                        execute=True,
+                        yes=True,
+                        replace_conflicts=False,
+                    )
                 )
-            )
             self.assertEqual((target / song).read_bytes(), b"old audio")
+            self.assertIn(
+                "Done. Copied 0 files; skipped 0; conflicts 1; missing 0.",
+                output.getvalue(),
+            )
 
             run_copy(
                 CopyOptions(
@@ -135,6 +144,66 @@ class LibrarySyncTests(unittest.TestCase):
                 )
             )
             self.assertEqual((target / song).read_bytes(), b"new audio")
+
+    def test_copy_plans_support_only_changes_while_report_stays_reportable_only(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "Laptop" / "Music"
+            target = Path(temp) / "Archive" / "Music"
+            cache = Path(temp) / "cache"
+            song = Path("D") / "David Bowie" / "1977 - Low" / "Speed of Life.flac"
+            cover = Path("D") / "David Bowie" / "1977 - Low" / "cover.jpg"
+            write_file(source / song, b"audio")
+            (target / song).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source / song, target / song)
+            write_file(source / cover, b"new cover")
+            write_file(target / cover, b"old cover")
+            old_mtime = time.time() - 100
+            os.utime(target / cover, (old_mtime, old_mtime))
+
+            scan_music_root(source, role="laptop", cache_dir=cache)
+            scan_music_root(target, role="archive", cache_dir=cache)
+            report = render_report(str(cache))
+            self.assertIn("add candidates: 0 files", report)
+            self.assertIn("conflicts: 0", report)
+
+            result = run_copy(
+                CopyOptions(
+                    source=str(source),
+                    target=str(target),
+                    source_role="laptop",
+                    target_role="archive",
+                    cache_dir=str(cache),
+                    execute=True,
+                    yes=True,
+                    replace_conflicts=True,
+                )
+            )
+
+            self.assertEqual(result, 0)
+            self.assertEqual((target / cover).read_bytes(), b"new cover")
+
+    def test_build_file_actions_reports_source_files_missing_after_scan(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "Laptop" / "Music"
+            target = Path(temp) / "Archive" / "Music"
+            cache = Path(temp) / "cache"
+            song = Path("D") / "David Bowie" / "1977 - Low" / "Speed of Life.flac"
+            write_file(source / song, b"audio")
+            target.mkdir(parents=True)
+
+            scan_music_root(source, role="laptop", cache_dir=cache)
+            scan_music_root(target, role="archive", cache_dir=cache)
+            source_records = load_records(manifest_path(source))
+            target_records = load_records(manifest_path(target))
+            chunks = plan_chunks(source_records, target_records)
+            (source / song).unlink()
+
+            actions = build_file_actions(source, target, chunks[0], replace_conflicts=False)
+
+            self.assertEqual(
+                [(action.relative_path, action.status) for action in actions],
+                [("D/David Bowie/1977 - Low/Speed of Life.flac", "missing")],
+            )
 
     def test_artist_level_overrides_group_exceptional_layouts_by_artist(self) -> None:
         with tempfile.TemporaryDirectory() as temp:

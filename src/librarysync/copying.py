@@ -11,6 +11,7 @@ from .ledger import (
     load_records,
     manifest_path,
     normalize_music_root,
+    path_key,
     scan_music_root,
     stats_match,
 )
@@ -21,7 +22,7 @@ from .reporting import diff_records, group_candidates
 class CopyChunk:
     kind: str
     relative_path: str
-    reportable_records: list[FileRecord]
+    candidate_records: list[FileRecord]
 
 
 @dataclass(frozen=True)
@@ -31,6 +32,14 @@ class FileAction:
     target_path: Path
     size: int
     status: str
+
+
+@dataclass(frozen=True)
+class CopyActionResult:
+    copied: int
+    skipped: int
+    conflicts: int
+    missing: int
 
 
 @dataclass
@@ -60,7 +69,7 @@ def plan_chunks(
         CopyChunk(
             kind=group.kind,
             relative_path=group.relative_path,
-            reportable_records=list(group.records),
+            candidate_records=list(group.records),
         )
         for group in groups
     ]
@@ -89,10 +98,16 @@ def build_file_actions(
     replace_conflicts: bool,
 ) -> list[FileAction]:
     actions: list[FileAction] = []
+    seen_source_keys: set[str] = set()
     for source_path in iter_chunk_files(source_root, chunk.relative_path):
         rel = source_path.relative_to(source_root).as_posix()
+        seen_source_keys.add(path_key(rel))
         target_path = target_root / Path(*rel.split("/"))
-        size = source_path.stat().st_size
+        try:
+            size = source_path.stat().st_size
+        except FileNotFoundError:
+            actions.append(FileAction(rel, source_path, target_path, 0, "missing"))
+            continue
         if target_path.exists():
             if stats_match(source_path, target_path):
                 status = "same"
@@ -101,7 +116,17 @@ def build_file_actions(
         else:
             status = "copy"
         actions.append(FileAction(rel, source_path, target_path, size, status))
-    return actions
+
+    for record in chunk.candidate_records:
+        if record.path_key in seen_source_keys:
+            continue
+        source_path = source_root / Path(*record.relative_path.split("/"))
+        target_path = target_root / Path(*record.relative_path.split("/"))
+        actions.append(
+            FileAction(record.relative_path, source_path, target_path, record.size, "missing")
+        )
+
+    return sorted(actions, key=lambda action: action.relative_path.casefold())
 
 
 def action_bytes(actions: list[FileAction]) -> int:
@@ -113,10 +138,11 @@ def prompt_chunk(chunk: CopyChunk, actions: list[FileAction], assume_yes: bool) 
         return "yes"
     pending = [action for action in actions if action.status in {"copy", "replace"}]
     conflicts = [action for action in actions if action.status == "conflict"]
+    missing = [action for action in actions if action.status == "missing"]
     print(
         f"[{chunk.kind}] {chunk.relative_path}: "
         f"{len(pending)} files, {format_bytes(action_bytes(actions))}, "
-        f"{len(conflicts)} conflicts"
+        f"{len(conflicts)} conflicts, {len(missing)} missing"
     )
     while True:
         answer = input("Copy this group? [y/N/q/a] ").strip().casefold()
@@ -131,17 +157,29 @@ def prompt_chunk(chunk: CopyChunk, actions: list[FileAction], assume_yes: bool) 
         print("Answer y, n, q, or a.")
 
 
-def copy_actions(actions: list[FileAction]) -> tuple[int, int]:
+def copy_actions(actions: list[FileAction]) -> CopyActionResult:
     copied = 0
     skipped = 0
+    conflicts = 0
+    missing = 0
     for action in actions:
-        if action.status in {"same", "conflict"}:
+        if action.status == "same":
             skipped += 1
             continue
+        if action.status == "conflict":
+            conflicts += 1
+            continue
+        if action.status == "missing":
+            missing += 1
+            continue
         action.target_path.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(action.source_path, action.target_path)
+        try:
+            shutil.copy2(action.source_path, action.target_path)
+        except FileNotFoundError:
+            missing += 1
+            continue
         copied += 1
-    return copied, skipped
+    return CopyActionResult(copied, skipped, conflicts, missing)
 
 
 def render_dry_run(chunks: list[CopyChunk], source_root: Path, target_root: Path, replace_conflicts: bool) -> str:
@@ -155,11 +193,13 @@ def render_dry_run(chunks: list[CopyChunk], source_root: Path, target_root: Path
         bytes_needed = action_bytes(actions)
         total_bytes += bytes_needed
         conflicts = len([action for action in actions if action.status == "conflict"])
+        missing = len([action for action in actions if action.status == "missing"])
         replacements = len([action for action in actions if action.status == "replace"])
         copies = len([action for action in actions if action.status == "copy"])
         lines.append(
             f"[{chunk.kind}] {chunk.relative_path}: "
-            f"{copies} new, {replacements} replacements, {conflicts} conflicts, "
+            f"{copies} new, {replacements} replacements, "
+            f"{conflicts} conflicts, {missing} missing, "
             f"{format_bytes(bytes_needed)}"
         )
     lines.append("")
@@ -182,8 +222,8 @@ def run_copy(options: CopyOptions) -> int:
         cache_dir=options.cache_dir,
     )
 
-    source_records = load_records(manifest_path(source_root), reportable_only=True)
-    target_records = load_records(manifest_path(target_root), reportable_only=True)
+    source_records = load_records(manifest_path(source_root), reportable_only=False)
+    target_records = load_records(manifest_path(target_root), reportable_only=False)
     chunks = plan_chunks(source_records, target_records, options.artist_level)
 
     if not options.execute:
@@ -197,16 +237,24 @@ def run_copy(options: CopyOptions) -> int:
     assume_yes = options.yes
     copied_total = 0
     skipped_total = 0
+    conflicts_total = 0
+    missing_total = 0
     for chunk in chunks:
         actions = build_file_actions(source_root, target_root, chunk, options.replace_conflicts)
         pending_actions = [action for action in actions if action.status in {"copy", "replace"}]
         if not pending_actions:
+            skipped_total += len([action for action in actions if action.status == "same"])
             conflicts = len([action for action in actions if action.status == "conflict"])
+            missing = len([action for action in actions if action.status == "missing"])
+            conflicts_total += conflicts
+            missing_total += missing
             if conflicts:
                 print(
                     f"Skipped {conflicts} conflicts in {chunk.relative_path}; "
                     "rerun with --replace-conflicts to overwrite."
                 )
+            if missing:
+                print(f"Skipped {missing} missing source files in {chunk.relative_path}.")
             continue
         answer = prompt_chunk(chunk, actions, assume_yes)
         if answer == "quit":
@@ -226,15 +274,23 @@ def run_copy(options: CopyOptions) -> int:
                 f"free {format_bytes(free_bytes)}. Delete files manually, then rerun."
             )
             return 3
-        copied, skipped = copy_actions(actions)
-        copied_total += copied
-        skipped_total += skipped
-        print(f"Copied {copied} files from {chunk.relative_path}; skipped {skipped}.")
+        result = copy_actions(actions)
+        copied_total += result.copied
+        skipped_total += result.skipped
+        conflicts_total += result.conflicts
+        missing_total += result.missing
+        print(
+            f"Copied {result.copied} files from {chunk.relative_path}; "
+            f"skipped {result.skipped}; conflicts {result.conflicts}; missing {result.missing}."
+        )
 
     scan_music_root(
         target_root,
         role=options.target_role,
         cache_dir=options.cache_dir,
     )
-    print(f"Done. Copied {copied_total} files; skipped {skipped_total}.")
+    print(
+        f"Done. Copied {copied_total} files; skipped {skipped_total}; "
+        f"conflicts {conflicts_total}; missing {missing_total}."
+    )
     return 0
