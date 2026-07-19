@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from pathlib import PurePosixPath
 
 from .ledger import (
     FileRecord,
@@ -10,6 +9,7 @@ from .ledger import (
     latest_snapshot_by_role,
     load_records,
     load_snapshots,
+    path_key,
     records_match,
     split_relative,
 )
@@ -53,13 +53,6 @@ def album_path(relative_path: str) -> str:
     return artist_path(relative_path)
 
 
-def comparable_parent(relative_path: str) -> str:
-    parts = split_relative(relative_path)
-    if len(parts) <= 1:
-        return ""
-    return str(PurePosixPath(*parts[:-1]))
-
-
 def diff_records(
     source_records: dict[str, FileRecord], target_records: dict[str, FileRecord]
 ) -> DiffResult:
@@ -71,11 +64,11 @@ def diff_records(
         if key in target_records and not records_match(record, target_records[key])
     ]
     return DiffResult(
-        source_only=sorted(source_only, key=lambda record: record.relative_path.casefold()),
-        target_only=sorted(target_only, key=lambda record: record.relative_path.casefold()),
+        source_only=sorted(source_only, key=lambda record: path_key(record.relative_path)),
+        target_only=sorted(target_only, key=lambda record: path_key(record.relative_path)),
         conflicts=sorted(
             conflicts,
-            key=lambda pair: pair[0].relative_path.casefold(),
+            key=lambda pair: path_key(pair[0].relative_path),
         ),
     )
 
@@ -125,7 +118,7 @@ def group_candidates(
         )
         for (kind, relative_path), group_records in groups.items()
     ]
-    return sorted(result, key=lambda group: group.relative_path.casefold())
+    return sorted(result, key=lambda group: path_key(group.relative_path))
 
 
 def render_known_drives(snapshots_by_role: dict[str, Snapshot], grouped: dict[str, list[Snapshot]]) -> list[str]:
@@ -143,28 +136,27 @@ def render_known_drives(snapshots_by_role: dict[str, Snapshot], grouped: dict[st
         lines.append(
             "  "
             f"{role}: scanned {snapshot.drive.last_scan_at or 'never'} "
-            f"files {snapshot.drive.reportable_count or 0} reportable{extra}"
+            f"files {snapshot.drive.file_count or 0}, "
+            f"reportable {snapshot.drive.reportable_count or 0}{extra}"
         )
     return lines
 
 
 def render_pair(
     title: str,
-    source: Snapshot | None,
-    target: Snapshot | None,
+    source_records: dict[str, FileRecord] | None,
+    target_records: dict[str, FileRecord] | None,
     artist_level_overrides: set[str] | None = None,
 ) -> list[str]:
     lines = [f"{title}:"]
-    if source is None or target is None:
+    if source_records is None or target_records is None:
         missing = []
-        if source is None:
+        if source_records is None:
             missing.append("source")
-        if target is None:
+        if target_records is None:
             missing.append("target")
         return lines + [f"  skipped: missing {' and '.join(missing)} scan"]
 
-    source_records = load_records(source.manifest_path, reportable_only=True)
-    target_records = load_records(target.manifest_path, reportable_only=True)
     diff = diff_records(source_records, target_records)
     groups = group_candidates(diff.source_only, target_records, artist_level_overrides)
 
@@ -191,12 +183,13 @@ def render_pair(
     return lines
 
 
-def render_phone_only(laptop: Snapshot | None, phone: Snapshot | None) -> list[str]:
+def render_phone_only(
+    laptop_records: dict[str, FileRecord] | None,
+    phone_records: dict[str, FileRecord] | None,
+) -> list[str]:
     lines = ["Phone-only reportable files:"]
-    if laptop is None or phone is None:
+    if laptop_records is None or phone_records is None:
         return lines + ["  skipped: missing laptop or phone scan"]
-    laptop_records = load_records(laptop.manifest_path, reportable_only=True)
-    phone_records = load_records(phone.manifest_path, reportable_only=True)
     diff = diff_records(laptop_records, phone_records)
     size = sum(record.size for record in diff.target_only)
     lines.append(f"  files: {len(diff.target_only)}, {format_bytes(size)}")
@@ -214,6 +207,10 @@ def render_report(cache_dir: str | None = None, artist_level_overrides: set[str]
     archive = latest.get("archive")
     phone = latest.get("phone")
     backup = latest.get("backup")
+    records_by_role = {
+        role: load_records(snapshot.manifest_path, reportable_only=True)
+        for role, snapshot in latest.items()
+    }
 
     lines: list[str] = ["LibrarySync report"]
     if cache_dir:
@@ -221,11 +218,37 @@ def render_report(cache_dir: str | None = None, artist_level_overrides: set[str]
     lines.append("")
     lines.extend(render_known_drives(latest, grouped))
     lines.append("")
-    lines.extend(render_pair("Laptop -> archive", laptop, archive, artist_level_overrides))
+    lines.extend(
+        render_pair(
+            "Laptop -> archive",
+            records_by_role.get("laptop") if laptop else None,
+            records_by_role.get("archive") if archive else None,
+            artist_level_overrides,
+        )
+    )
     lines.append("")
-    lines.extend(render_pair("Archive -> backup", archive, backup, artist_level_overrides))
+    lines.extend(
+        render_pair(
+            "Archive -> backup",
+            records_by_role.get("archive") if archive else None,
+            records_by_role.get("backup") if backup else None,
+            artist_level_overrides,
+        )
+    )
     lines.append("")
-    lines.extend(render_pair("Laptop -> phone", laptop, phone, artist_level_overrides))
+    lines.extend(
+        render_pair(
+            "Laptop -> phone",
+            records_by_role.get("laptop") if laptop else None,
+            records_by_role.get("phone") if phone else None,
+            artist_level_overrides,
+        )
+    )
     lines.append("")
-    lines.extend(render_phone_only(laptop, phone))
+    lines.extend(
+        render_phone_only(
+            records_by_role.get("laptop") if laptop else None,
+            records_by_role.get("phone") if phone else None,
+        )
+    )
     return "\n".join(lines)

@@ -16,6 +16,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 import librarysync.ledger as ledger
+import librarysync.reporting as reporting
 from librarysync.copying import CopyOptions, build_file_actions, plan_chunks, run_copy
 from librarysync.ledger import (
     iter_files,
@@ -156,6 +157,45 @@ class LibrarySyncTests(unittest.TestCase):
             self.assertEqual(len(snapshots), 1)
             self.assertEqual(snapshots[0].drive.role, "laptop")
             self.assertIn("Warning: skipped cached snapshot", stderr.getvalue())
+
+    def test_report_shows_total_and_reportable_counts(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "Laptop" / "Music"
+            cache = Path(temp) / "cache"
+            write_file(root / "A" / "Artist" / "Album" / "Song.mp3", b"audio")
+            write_file(root / "A" / "Artist" / "Album" / "cover.jpg", b"cover")
+
+            scan_music_root(root, role="laptop", cache_dir=cache)
+            report = render_report(str(cache))
+
+            self.assertIn("laptop: scanned ", report)
+            self.assertIn("files 2, reportable 1", report)
+
+    def test_report_loads_each_role_manifest_once(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            laptop = Path(temp) / "Laptop" / "Music"
+            phone = Path(temp) / "Phone" / "Music"
+            cache = Path(temp) / "cache"
+            write_file(laptop / "A" / "Artist" / "Album" / "Song.mp3", b"audio")
+            write_file(phone / "A" / "Artist" / "Album" / "Song.mp3", b"audio")
+            scan_music_root(laptop, role="laptop", cache_dir=cache)
+            scan_music_root(phone, role="phone", cache_dir=cache)
+
+            original_load_records = reporting.load_records
+            load_count = 0
+
+            def counting_load_records(*args, **kwargs):
+                nonlocal load_count
+                load_count += 1
+                return original_load_records(*args, **kwargs)
+
+            try:
+                reporting.load_records = counting_load_records
+                render_report(str(cache))
+            finally:
+                reporting.load_records = original_load_records
+
+            self.assertEqual(load_count, 2)
 
     def test_scan_records_all_files_but_reportable_filter_is_music_plus_playlist_cue(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
