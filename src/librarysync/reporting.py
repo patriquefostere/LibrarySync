@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sqlite3
 from dataclasses import dataclass
 
 from .ledger import (
@@ -74,11 +75,15 @@ def diff_records(
 
 
 def target_artists(records: dict[str, FileRecord]) -> set[str]:
-    return {artist_path(record.relative_path).casefold() for record in records.values()}
+    return {path_key(artist_path(record.relative_path)) for record in records.values()}
 
 
 def normalize_artist_level_overrides(artist_level_overrides: set[str] | None) -> set[str]:
-    return {value.casefold().replace("\\", "/") for value in artist_level_overrides or set()}
+    return {
+        path_key("/".join(parts))
+        for value in artist_level_overrides or set()
+        if (parts := split_relative(value))
+    }
 
 
 def candidate_group_key(
@@ -89,7 +94,8 @@ def candidate_group_key(
     artist = artist_path(record.relative_path)
     if not artist:
         return None
-    if artist.casefold() in artist_level_overrides or artist.casefold() not in existing_artists:
+    artist_key = path_key(artist)
+    if artist_key in artist_level_overrides or artist_key not in existing_artists:
         return "artist", artist
     return "album", album_path(record.relative_path)
 
@@ -125,7 +131,12 @@ def render_known_drives(snapshots_by_role: dict[str, Snapshot], grouped: dict[st
     lines = ["Known drives:"]
     if not snapshots_by_role:
         return lines + ["  none"]
-    for role in ["laptop", "archive", "phone", "backup"]:
+    canonical_roles = ["laptop", "archive", "phone", "backup"]
+    extra_roles = sorted(
+        (role for role in snapshots_by_role if role not in canonical_roles),
+        key=path_key,
+    )
+    for role in [*canonical_roles, *extra_roles]:
         snapshot = snapshots_by_role.get(role)
         if snapshot is None:
             lines.append(f"  {role}: not scanned")
@@ -146,19 +157,22 @@ def render_pair(
     title: str,
     source_records: dict[str, FileRecord] | None,
     target_records: dict[str, FileRecord] | None,
+    target_group_records: dict[str, FileRecord] | None,
+    source_issue: str | None = None,
+    target_issue: str | None = None,
     artist_level_overrides: set[str] | None = None,
 ) -> list[str]:
     lines = [f"{title}:"]
-    if source_records is None or target_records is None:
-        missing = []
+    if source_records is None or target_records is None or target_group_records is None:
+        issues = []
         if source_records is None:
-            missing.append("source")
+            issues.append(source_issue or "missing source scan")
         if target_records is None:
-            missing.append("target")
-        return lines + [f"  skipped: missing {' and '.join(missing)} scan"]
+            issues.append(target_issue or "missing target scan")
+        return lines + [f"  skipped: {' and '.join(issues)}"]
 
     diff = diff_records(source_records, target_records)
-    groups = group_candidates(diff.source_only, target_records, artist_level_overrides)
+    groups = group_candidates(diff.source_only, target_group_records, artist_level_overrides)
 
     source_size = sum(record.size for record in diff.source_only)
     lines.append(
@@ -186,10 +200,17 @@ def render_pair(
 def render_phone_only(
     laptop_records: dict[str, FileRecord] | None,
     phone_records: dict[str, FileRecord] | None,
+    laptop_issue: str | None = None,
+    phone_issue: str | None = None,
 ) -> list[str]:
     lines = ["Phone-only reportable files:"]
     if laptop_records is None or phone_records is None:
-        return lines + ["  skipped: missing laptop or phone scan"]
+        issues = []
+        if laptop_records is None:
+            issues.append(laptop_issue or "missing laptop scan")
+        if phone_records is None:
+            issues.append(phone_issue or "missing phone scan")
+        return lines + [f"  skipped: {' and '.join(issues)}"]
     diff = diff_records(laptop_records, phone_records)
     size = sum(record.size for record in diff.target_only)
     lines.append(f"  files: {len(diff.target_only)}, {format_bytes(size)}")
@@ -200,6 +221,27 @@ def render_phone_only(
     return lines
 
 
+def load_report_records(snapshot: Snapshot) -> dict[str, FileRecord] | None:
+    try:
+        return load_records(snapshot.manifest_path, reportable_only=False)
+    except sqlite3.DatabaseError:
+        return None
+
+
+def reportable_records(records: dict[str, FileRecord] | None) -> dict[str, FileRecord] | None:
+    if records is None:
+        return None
+    return {key: record for key, record in records.items() if record.is_reportable}
+
+
+def role_issue(role: str, snapshot: Snapshot | None, records: dict[str, FileRecord] | None) -> str | None:
+    if snapshot is None:
+        return f"missing {role} scan"
+    if records is None:
+        return f"unreadable {role} manifest"
+    return None
+
+
 def render_report(cache_dir: str | None = None, artist_level_overrides: set[str] | None = None) -> str:
     snapshots = load_snapshots(cache_dir)
     latest, grouped = latest_snapshot_by_role(snapshots)
@@ -207,9 +249,14 @@ def render_report(cache_dir: str | None = None, artist_level_overrides: set[str]
     archive = latest.get("archive")
     phone = latest.get("phone")
     backup = latest.get("backup")
-    records_by_role = {
-        role: load_records(snapshot.manifest_path, reportable_only=True)
-        for role, snapshot in latest.items()
+    records_by_role = {role: load_report_records(snapshot) for role, snapshot in latest.items()}
+    reportable_by_role = {
+        role: reportable_records(records)
+        for role, records in records_by_role.items()
+    }
+    issues_by_role = {
+        role: role_issue(role, latest.get(role), records_by_role.get(role))
+        for role in {"laptop", "archive", "phone", "backup"}
     }
 
     lines: list[str] = ["LibrarySync report"]
@@ -221,8 +268,11 @@ def render_report(cache_dir: str | None = None, artist_level_overrides: set[str]
     lines.extend(
         render_pair(
             "Laptop -> archive",
-            records_by_role.get("laptop") if laptop else None,
+            reportable_by_role.get("laptop") if laptop else None,
+            reportable_by_role.get("archive") if archive else None,
             records_by_role.get("archive") if archive else None,
+            issues_by_role["laptop"],
+            issues_by_role["archive"],
             artist_level_overrides,
         )
     )
@@ -230,8 +280,11 @@ def render_report(cache_dir: str | None = None, artist_level_overrides: set[str]
     lines.extend(
         render_pair(
             "Archive -> backup",
-            records_by_role.get("archive") if archive else None,
+            reportable_by_role.get("archive") if archive else None,
+            reportable_by_role.get("backup") if backup else None,
             records_by_role.get("backup") if backup else None,
+            issues_by_role["archive"],
+            issues_by_role["backup"],
             artist_level_overrides,
         )
     )
@@ -239,16 +292,21 @@ def render_report(cache_dir: str | None = None, artist_level_overrides: set[str]
     lines.extend(
         render_pair(
             "Laptop -> phone",
-            records_by_role.get("laptop") if laptop else None,
+            reportable_by_role.get("laptop") if laptop else None,
+            reportable_by_role.get("phone") if phone else None,
             records_by_role.get("phone") if phone else None,
+            issues_by_role["laptop"],
+            issues_by_role["phone"],
             artist_level_overrides,
         )
     )
     lines.append("")
     lines.extend(
         render_phone_only(
-            records_by_role.get("laptop") if laptop else None,
-            records_by_role.get("phone") if phone else None,
+            reportable_by_role.get("laptop") if laptop else None,
+            reportable_by_role.get("phone") if phone else None,
+            issues_by_role["laptop"],
+            issues_by_role["phone"],
         )
     )
     return "\n".join(lines)

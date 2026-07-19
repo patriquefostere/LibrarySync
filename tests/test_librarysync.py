@@ -197,6 +197,68 @@ class LibrarySyncTests(unittest.TestCase):
 
             self.assertEqual(load_count, 2)
 
+    def test_report_groups_against_all_target_records(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            laptop = Path(temp) / "Laptop" / "Music"
+            archive = Path(temp) / "Archive" / "Music"
+            cache = Path(temp) / "cache"
+            write_file(laptop / "A" / "Artist" / "New Album" / "Song.mp3", b"audio")
+            write_file(archive / "A" / "Artist" / "Existing Album" / "cover.jpg", b"cover")
+
+            scan_music_root(laptop, role="laptop", cache_dir=cache)
+            scan_music_root(archive, role="archive", cache_dir=cache)
+            report = render_report(str(cache))
+
+            self.assertIn("[album] A/Artist/New Album", report)
+            self.assertNotIn("[artist] A/Artist", report)
+
+    def test_report_artist_level_overrides_normalize_path_shape(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            laptop = Path(temp) / "Laptop" / "Music"
+            archive = Path(temp) / "Archive" / "Music"
+            cache = Path(temp) / "cache"
+            write_file(laptop / "F" / "Frank Zappa" / "1970s" / "Album" / "Song.mp3", b"new")
+            write_file(archive / "F" / "Frank Zappa" / "1960s" / "Old" / "Song.mp3", b"old")
+
+            scan_music_root(laptop, role="laptop", cache_dir=cache)
+            scan_music_root(archive, role="archive", cache_dir=cache)
+            report = render_report(str(cache), {"F//Frank Zappa/"})
+
+            self.assertIn("[artist] F/Frank Zappa", report)
+            self.assertNotIn("[album] F/Frank Zappa/1970s", report)
+
+    def test_report_skips_pairs_with_unreadable_cached_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            laptop = Path(temp) / "Laptop" / "Music"
+            archive = Path(temp) / "Archive" / "Music"
+            cache = Path(temp) / "cache"
+            write_file(laptop / "A" / "Artist" / "Album" / "Song.mp3", b"audio")
+            archive.mkdir(parents=True)
+            scan_music_root(laptop, role="laptop", cache_dir=cache)
+            scan_music_root(archive, role="archive", cache_dir=cache)
+            for child in cache.iterdir():
+                if (child / "drive.json").read_text(encoding="utf-8").find('"role": "laptop"') >= 0:
+                    (child / "manifest.sqlite").write_text("not a sqlite database", encoding="utf-8")
+
+            report = render_report(str(cache))
+
+            self.assertIn("Laptop -> archive:", report)
+            self.assertIn("skipped: unreadable laptop manifest", report)
+            self.assertIn("Phone-only reportable files:", report)
+            self.assertIn("skipped: unreadable laptop manifest and missing phone scan", report)
+
+    def test_report_lists_unknown_cached_roles(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "Unknown" / "Music"
+            cache = Path(temp) / "cache"
+            write_file(root / "A" / "Artist" / "Album" / "Song.mp3", b"audio")
+
+            scan_music_root(root, cache_dir=cache)
+            report = render_report(str(cache))
+
+            self.assertIn("unknown: scanned ", report)
+            self.assertIn("files 1, reportable 1", report)
+
     def test_scan_records_all_files_but_reportable_filter_is_music_plus_playlist_cue(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp) / "Laptop" / "Music"
