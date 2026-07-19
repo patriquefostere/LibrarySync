@@ -4,6 +4,7 @@ import json
 import os
 import shutil
 import sqlite3
+import sys
 import unicodedata
 import uuid
 from dataclasses import dataclass
@@ -264,6 +265,10 @@ def _load_first_seen(existing_manifest: Path) -> dict[str, str]:
         conn.close()
 
 
+def warn(message: str) -> None:
+    print(f"Warning: {message}", file=sys.stderr)
+
+
 def iter_files(music_root: Path) -> Iterable[Path]:
     for current_root, dirnames, filenames in os.walk(music_root, followlinks=False):
         current_path = Path(current_root)
@@ -294,73 +299,83 @@ def scan_music_root(
 
     now = utc_now_iso()
     existing_first_seen = _load_first_seen(manifest_path(music_root))
-    temp_manifest = ledger_dir(music_root) / "manifest.sqlite.tmp"
-    if temp_manifest.exists():
-        temp_manifest.unlink()
+    temp_manifest = ledger_dir(music_root) / f"manifest.{uuid.uuid4().hex}.sqlite.tmp"
 
-    conn = _connect_manifest(temp_manifest)
     file_count = 0
     reportable_count = 0
+    seen_paths: dict[str, str] = {}
     try:
-        _create_manifest_schema(conn)
-        for file_path in iter_files(music_root):
-            try:
-                stat = file_path.stat()
-            except FileNotFoundError:
-                continue
-            relative_path = relative_to_music_root(music_root, file_path)
-            key = path_key(relative_path)
-            reportable = is_reportable_relative_path(relative_path)
-            if reportable:
-                reportable_count += 1
-            file_count += 1
-            conn.execute(
-                """
-                INSERT OR REPLACE INTO files (
-                    path_key,
-                    relative_path,
-                    size,
-                    mtime_ns,
-                    mtime_iso,
-                    first_seen,
-                    last_seen,
-                    is_reportable
-                )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    key,
-                    relative_path,
-                    stat.st_size,
-                    stat.st_mtime_ns,
-                    mtime_to_iso(stat.st_mtime_ns),
-                    existing_first_seen.get(key, now),
-                    now,
-                    1 if reportable else 0,
-                ),
-            )
-        meta_values = {
-            "scan_at": now,
-            "root": str(music_root),
-            "drive_id": info.drive_id,
-            "role": info.role,
-            "label": info.label,
-            "file_count": str(file_count),
-            "reportable_count": str(reportable_count),
-            "schema_version": str(SCHEMA_VERSION),
-        }
-        conn.executemany(
-            "INSERT INTO meta(key, value) VALUES (?, ?)",
-            sorted(meta_values.items()),
-        )
-        conn.commit()
-    finally:
-        conn.close()
+        conn = _connect_manifest(temp_manifest)
+        try:
+            _create_manifest_schema(conn)
+            for file_path in iter_files(music_root):
+                try:
+                    stat = file_path.stat()
+                except FileNotFoundError:
+                    continue
+                relative_path = relative_to_music_root(music_root, file_path)
+                key = path_key(relative_path)
+                existing_path = seen_paths.get(key)
+                if existing_path is not None and existing_path != relative_path:
+                    warn(
+                        "skipped path collision "
+                        f"{relative_path!r}; already scanned {existing_path!r}"
+                    )
+                    continue
+                seen_paths[key] = relative_path
 
-    target_manifest = manifest_path(music_root)
-    if target_manifest.exists():
-        target_manifest.unlink()
-    temp_manifest.replace(target_manifest)
+                reportable = is_reportable_relative_path(relative_path)
+                if reportable:
+                    reportable_count += 1
+                file_count += 1
+                conn.execute(
+                    """
+                    INSERT INTO files (
+                        path_key,
+                        relative_path,
+                        size,
+                        mtime_ns,
+                        mtime_iso,
+                        first_seen,
+                        last_seen,
+                        is_reportable
+                    )
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        key,
+                        relative_path,
+                        stat.st_size,
+                        stat.st_mtime_ns,
+                        mtime_to_iso(stat.st_mtime_ns),
+                        existing_first_seen.get(key, now),
+                        now,
+                        1 if reportable else 0,
+                    ),
+                )
+            meta_values = {
+                "scan_at": now,
+                "root": str(music_root),
+                "drive_id": info.drive_id,
+                "role": info.role,
+                "label": info.label,
+                "file_count": str(file_count),
+                "reportable_count": str(reportable_count),
+                "schema_version": str(SCHEMA_VERSION),
+            }
+            conn.executemany(
+                "INSERT INTO meta(key, value) VALUES (?, ?)",
+                sorted(meta_values.items()),
+            )
+            conn.commit()
+        finally:
+            conn.close()
+
+        target_manifest = manifest_path(music_root)
+        temp_manifest.replace(target_manifest)
+    except Exception:
+        temp_manifest.unlink(missing_ok=True)
+        raise
 
     info = DriveInfo(
         drive_id=info.drive_id,
@@ -445,7 +460,12 @@ def load_snapshots(cache_dir: str | Path | None = None) -> list[Snapshot]:
         manifest = child / "manifest.sqlite"
         if not drive_path.exists() or not manifest.exists():
             continue
-        snapshots.append(Snapshot(read_drive_info_from_file(drive_path), child, manifest))
+        try:
+            drive = read_drive_info_from_file(drive_path)
+        except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError) as error:
+            warn(f"skipped cached snapshot {child}: {error}")
+            continue
+        snapshots.append(Snapshot(drive, child, manifest))
     return snapshots
 
 
