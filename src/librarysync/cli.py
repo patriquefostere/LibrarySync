@@ -47,11 +47,15 @@ def build_parser() -> argparse.ArgumentParser:
         help="Force artist-level grouping for a relative artist path, e.g. F/Frank Zappa.",
     )
     copy_parser.add_argument("--execute", action="store_true", help="Actually copy files.")
-    copy_parser.add_argument("--yes", action="store_true", help="Accept every copy group.")
+    copy_parser.add_argument(
+        "--yes",
+        action="store_true",
+        help="With --execute, accept every copy group.",
+    )
     copy_parser.add_argument(
         "--replace-conflicts",
         action="store_true",
-        help="Overwrite same-path files that differ. Without this, conflicts are skipped.",
+        help="Treat conflicts as replacements; only writes with --execute.",
     )
     add_cache_argument(copy_parser)
     copy_parser.set_defaults(func=handle_copy)

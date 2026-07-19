@@ -15,6 +15,7 @@ from types import SimpleNamespace
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
+import librarysync.cli as cli
 import librarysync.ledger as ledger
 import librarysync.reporting as reporting
 from librarysync.copying import CopyOptions, build_file_actions, plan_chunks, run_copy
@@ -39,6 +40,143 @@ def write_file(path: Path, content: bytes) -> None:
 
 
 class LibrarySyncTests(unittest.TestCase):
+    def test_main_dispatches_report_with_artist_levels(self) -> None:
+        calls = []
+        original_render_report = cli.render_report
+
+        def fake_render_report(cache_dir, artist_level_overrides):
+            calls.append((cache_dir, artist_level_overrides))
+            return "report text"
+
+        output = io.StringIO()
+        try:
+            cli.render_report = fake_render_report
+            with contextlib.redirect_stdout(output):
+                result = cli.main(
+                    [
+                        "report",
+                        "--cache",
+                        "cache-dir",
+                        "--artist-level",
+                        "F/Frank Zappa",
+                    ]
+                )
+        finally:
+            cli.render_report = original_render_report
+
+        self.assertEqual(result, 0)
+        self.assertEqual(calls, [("cache-dir", {"F/Frank Zappa"})])
+        self.assertEqual(output.getvalue(), "report text\n")
+
+    def test_scan_main_prepends_scan_command(self) -> None:
+        calls = []
+        original_scan_music_root = cli.scan_music_root
+
+        def fake_scan_music_root(root, role=None, cache_dir=None):
+            calls.append((root, role, cache_dir))
+            return SimpleNamespace(
+                role=role,
+                file_count=2,
+                reportable_count=1,
+                last_scan_at="2026-07-19T12:00:00Z",
+            )
+
+        output = io.StringIO()
+        try:
+            cli.scan_music_root = fake_scan_music_root
+            with contextlib.redirect_stdout(output):
+                result = cli.scan_main(
+                    [
+                        "--root",
+                        "Music",
+                        "--role",
+                        "laptop",
+                        "--cache",
+                        "cache-dir",
+                    ]
+                )
+        finally:
+            cli.scan_music_root = original_scan_music_root
+
+        self.assertEqual(result, 0)
+        self.assertEqual(calls, [("Music", "laptop", "cache-dir")])
+        self.assertIn(
+            "Scanned role=laptop files=2 reportable=1 at 2026-07-19T12:00:00Z",
+            output.getvalue(),
+        )
+
+    def test_copy_main_propagates_copy_options(self) -> None:
+        calls = []
+        original_run_copy = cli.run_copy
+
+        def fake_run_copy(options):
+            calls.append(options)
+            return 7
+
+        try:
+            cli.run_copy = fake_run_copy
+            result = cli.copy_main(
+                [
+                    "--source",
+                    "Laptop/Music",
+                    "--target",
+                    "Phone/Music",
+                    "--source-role",
+                    "laptop",
+                    "--target-role",
+                    "phone",
+                    "--cache",
+                    "cache-dir",
+                    "--execute",
+                    "--yes",
+                    "--replace-conflicts",
+                    "--artist-level",
+                    "F/Frank Zappa",
+                ]
+            )
+        finally:
+            cli.run_copy = original_run_copy
+
+        self.assertEqual(result, 7)
+        self.assertEqual(
+            calls,
+            [
+                CopyOptions(
+                    source="Laptop/Music",
+                    target="Phone/Music",
+                    source_role="laptop",
+                    target_role="phone",
+                    cache_dir="cache-dir",
+                    execute=True,
+                    yes=True,
+                    replace_conflicts=True,
+                    artist_level={"F/Frank Zappa"},
+                )
+            ],
+        )
+
+    def test_copy_help_describes_execute_scoped_options(self) -> None:
+        output = io.StringIO()
+
+        with self.assertRaises(SystemExit) as context:
+            with contextlib.redirect_stdout(output):
+                cli.main(["copy", "--help"])
+
+        self.assertEqual(context.exception.code, 0)
+        self.assertIn("With --execute, accept every copy group.", output.getvalue())
+        self.assertIn("Treat conflicts as replacements; only writes with", output.getvalue())
+        self.assertIn("--execute.", output.getvalue())
+
+    def test_main_reports_missing_subcommand_error(self) -> None:
+        stderr = io.StringIO()
+
+        with self.assertRaises(SystemExit) as context:
+            with contextlib.redirect_stderr(stderr):
+                cli.main([])
+
+        self.assertEqual(context.exception.code, 2)
+        self.assertIn("required: command", stderr.getvalue())
+
     def test_scan_uses_role_as_drive_label(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp) / "Laptop" / "Music"
