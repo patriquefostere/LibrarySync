@@ -6,4 +6,4 @@ __pycache__/
 
 # Local fake-drive/manual testing data.
 manual-test-libraries/
-.music-ledger-cache/
+.music-ledger-cache*/

@@ -18,6 +18,13 @@ V1 rules:
 - Empty folders are not copied.
 - Same-path differences are conflicts. Use `--replace-conflicts` only when you explicitly want source files to overwrite target files.
 
+Valid `--role` values:
+
+- `laptop`: intake/current active library
+- `archive`: main Music hard drive
+- `phone`: phone microSD/USB Music folder
+- `backup`: Total Backup drive
+
 ## Quick start
 
 From this folder:
@@ -108,7 +115,7 @@ music-scan --root "E:\Music" --role archive
 
 Updates the drive ledger and writes a cached copy. First scan creates the drive id.
 
-Roles:
+Valid `--role` values:
 
 - `laptop`
 - `archive`
