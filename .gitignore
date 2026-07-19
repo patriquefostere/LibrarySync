@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+
+# Local fake-drive/manual testing data.
+manual-test-libraries/
+.music-ledger-cache/

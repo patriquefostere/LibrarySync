@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "librarysync"
+version = "0.1.0"
+description = "Offline-aware Music folder ledger, report, and copy tool."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "LibrarySync" }]
+dependencies = []
+
+[project.scripts]
+music-scan = "librarysync.cli:scan_main"
+music-report = "librarysync.cli:report_main"
+music-copy = "librarysync.cli:copy_main"
+library-sync = "librarysync.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
