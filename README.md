@@ -18,13 +18,6 @@ V1 rules:
 - Empty folders are not copied.
 - Same-path differences are conflicts. Use `--replace-conflicts` only when you explicitly want source files to overwrite target files.
 
-Valid `--role` values:
-
-- `laptop`: intake/current active library
-- `archive`: main Music hard drive
-- `phone`: phone microSD/USB Music folder
-- `backup`: Total Backup drive
-
 ## Quick start
 
 From this folder:
@@ -46,36 +39,6 @@ For testing without touching real drives:
 
 ```powershell
 python -m unittest discover -s tests
-```
-
-## Fake test libraries
-
-LibrarySync does not parse audio bytes in v1. It only uses path, extension, size, and timestamp, so fake `.mp3` files are fine for testing. They will not play in a media player, but they exercise scan/report/copy behavior.
-
-Fake roots include normal artist/album folders plus exceptional layouts:
-
-- `F/Frank Zappa/1960s/1969 - Hot Rats/tracks`
-- `F/Frank Zappa/1970s/1973 - Over-Nite Sensation/tracks`
-- `B/Beethoven/Symphonies/Symphony 1/tracks`
-- `B/Beethoven/String Quartets/String Quartet No. 14/tracks`
-- `C/Chopin/Mazurkas/tracks`
-- `C/Chopin/Nocturne Op. 9 No. 2.wav`
-
-Create ignored fake roots:
-
-```powershell
-python scripts/create_fake_music_roots.py
-```
-
-Then try:
-
-```powershell
-music-scan --root ".\manual-test-libraries\Laptop\Music" --role laptop --cache ".\.music-ledger-cache"
-music-scan --root ".\manual-test-libraries\Archive\Music" --role archive --cache ".\.music-ledger-cache"
-music-scan --root ".\manual-test-libraries\Phone\Music" --role phone --cache ".\.music-ledger-cache"
-music-scan --root ".\manual-test-libraries\Backup\Music" --role backup --cache ".\.music-ledger-cache"
-music-report --cache ".\.music-ledger-cache" --artist-level "F/Frank Zappa" --artist-level "B/Beethoven" --artist-level "C/Chopin"
-music-copy --source ".\manual-test-libraries\Laptop\Music" --target ".\manual-test-libraries\Phone\Music" --source-role laptop --target-role phone --cache ".\.music-ledger-cache" --artist-level "F/Frank Zappa" --artist-level "B/Beethoven" --artist-level "C/Chopin"
 ```
 
 ## Cache
@@ -162,4 +125,35 @@ Conflict replacement is explicit:
 
 ```powershell
 music-copy --source "C:\Users\You\Music" --target "E:\Music" --source-role laptop --target-role archive --execute --replace-conflicts
+```
+
+
+## Fake test libraries
+
+LibrarySync does not parse audio bytes in v1. It only uses path, extension, size, and timestamp, so fake `.mp3` files are fine for testing. They will not play in a media player, but they exercise scan/report/copy behavior.
+
+Fake roots include normal artist/album folders plus exceptional layouts:
+
+- `F/Frank Zappa/1960s/1969 - Hot Rats/tracks`
+- `F/Frank Zappa/1970s/1973 - Over-Nite Sensation/tracks`
+- `B/Beethoven/Symphonies/Symphony 1/tracks`
+- `B/Beethoven/String Quartets/String Quartet No. 14/tracks`
+- `C/Chopin/Mazurkas/tracks`
+- `C/Chopin/Nocturne Op. 9 No. 2.wav`
+
+Create ignored fake roots:
+
+```powershell
+python scripts/create_fake_music_roots.py
+```
+
+Then try:
+
+```powershell
+music-scan --root ".\manual-test-libraries\Laptop\Music" --role laptop --cache ".\.music-ledger-cache"
+music-scan --root ".\manual-test-libraries\Archive\Music" --role archive --cache ".\.music-ledger-cache"
+music-scan --root ".\manual-test-libraries\Phone\Music" --role phone --cache ".\.music-ledger-cache"
+music-scan --root ".\manual-test-libraries\Backup\Music" --role backup --cache ".\.music-ledger-cache"
+music-report --cache ".\.music-ledger-cache" --artist-level "F/Frank Zappa" --artist-level "B/Beethoven" --artist-level "C/Chopin"
+music-copy --source ".\manual-test-libraries\Laptop\Music" --target ".\manual-test-libraries\Phone\Music" --source-role laptop --target-role phone --cache ".\.music-ledger-cache" --artist-level "F/Frank Zappa" --artist-level "B/Beethoven" --artist-level "C/Chopin"
 ```
