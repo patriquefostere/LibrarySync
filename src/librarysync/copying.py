@@ -8,14 +8,13 @@ from .ledger import (
     FileRecord,
     format_bytes,
     is_under_ledger,
+    load_records,
     manifest_path,
     normalize_music_root,
-    path_key,
     scan_music_root,
     stats_match,
 )
-from .reporting import album_path, artist_path, diff_records, group_candidates
-from .ledger import load_records
+from .reporting import diff_records, group_candidates
 
 
 @dataclass(frozen=True)
@@ -47,36 +46,22 @@ class CopyOptions:
     artist_level: set[str] | None = None
 
 
-def chunk_path_for_record(
-    record: FileRecord,
-    target_records: dict[str, FileRecord],
-    artist_level_overrides: set[str],
-) -> tuple[str, str]:
-    artist = artist_path(record.relative_path)
-    existing_artists = {artist_path(target.relative_path).casefold() for target in target_records.values()}
-    if artist.casefold() in artist_level_overrides or artist.casefold() not in existing_artists:
-        return "artist", artist
-    return "album", album_path(record.relative_path)
-
-
 def plan_chunks(
     source_records: dict[str, FileRecord],
     target_records: dict[str, FileRecord],
     artist_level_overrides: set[str] | None = None,
 ) -> list[CopyChunk]:
-    overrides = {value.casefold().replace("\\", "/") for value in artist_level_overrides or set()}
     diff = diff_records(source_records, target_records)
     conflict_source_records = [source for source, _ in diff.conflicts]
     candidate_records = diff.source_only + conflict_source_records
-    groups = group_candidates(candidate_records, target_records, overrides)
-
-    records_by_group: dict[tuple[str, str], list[FileRecord]] = {}
-    for record in candidate_records:
-        group_key = chunk_path_for_record(record, target_records, overrides)
-        records_by_group.setdefault(group_key, []).append(record)
+    groups = group_candidates(candidate_records, target_records, artist_level_overrides)
 
     chunks = [
-        CopyChunk(kind=group.kind, relative_path=group.relative_path, reportable_records=records_by_group[(group.kind, group.relative_path)])
+        CopyChunk(
+            kind=group.kind,
+            relative_path=group.relative_path,
+            reportable_records=list(group.records),
+        )
         for group in groups
     ]
     return sorted(chunks, key=lambda chunk: chunk.relative_path.casefold())

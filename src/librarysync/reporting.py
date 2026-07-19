@@ -28,6 +28,7 @@ class Group:
     relative_path: str
     file_count: int
     size: int
+    records: tuple[FileRecord, ...]
 
 
 def artist_path(relative_path: str) -> str:
@@ -83,22 +84,35 @@ def target_artists(records: dict[str, FileRecord]) -> set[str]:
     return {artist_path(record.relative_path).casefold() for record in records.values()}
 
 
+def normalize_artist_level_overrides(artist_level_overrides: set[str] | None) -> set[str]:
+    return {value.casefold().replace("\\", "/") for value in artist_level_overrides or set()}
+
+
+def candidate_group_key(
+    record: FileRecord,
+    existing_artists: set[str],
+    artist_level_overrides: set[str],
+) -> tuple[str, str] | None:
+    artist = artist_path(record.relative_path)
+    if not artist:
+        return None
+    if artist.casefold() in artist_level_overrides or artist.casefold() not in existing_artists:
+        return "artist", artist
+    return "album", album_path(record.relative_path)
+
+
 def group_candidates(
     records: list[FileRecord],
     target_records: dict[str, FileRecord],
     artist_level_overrides: set[str] | None = None,
 ) -> list[Group]:
-    overrides = {value.casefold().replace("\\", "/") for value in artist_level_overrides or set()}
+    overrides = normalize_artist_level_overrides(artist_level_overrides)
     existing_artists = target_artists(target_records)
     groups: dict[tuple[str, str], list[FileRecord]] = {}
     for record in records:
-        artist = artist_path(record.relative_path)
-        if not artist:
+        group_key = candidate_group_key(record, existing_artists, overrides)
+        if group_key is None:
             continue
-        if artist.casefold() in overrides or artist.casefold() not in existing_artists:
-            group_key = ("artist", artist)
-        else:
-            group_key = ("album", album_path(record.relative_path))
         groups.setdefault(group_key, []).append(record)
 
     result = [
@@ -107,6 +121,7 @@ def group_candidates(
             relative_path=relative_path,
             file_count=len(group_records),
             size=sum(record.size for record in group_records),
+            records=tuple(group_records),
         )
         for (kind, relative_path), group_records in groups.items()
     ]
