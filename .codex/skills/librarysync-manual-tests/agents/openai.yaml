@@ -1,0 +1,4 @@
+interface:
+  display_name: "LibrarySync Manual Tests"
+  short_description: "Keep manual-test writes inside run folders"
+  default_prompt: "Use $librarysync-manual-tests to run LibrarySync manual tests without writing outside manual-test-libraries-*."
