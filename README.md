@@ -29,8 +29,8 @@ python -m pip install -e .
 Then:
 
 ```powershell
-music-scan --root "C:\Users\You\Music" --role laptop --label Laptop
-music-scan --root "E:\Music" --role archive --label "Music drive"
+music-scan --root "C:\Users\You\Music" --role laptop
+music-scan --root "E:\Music" --role archive
 music-report
 music-copy --source "C:\Users\You\Music" --target "F:\Music" --source-role laptop --target-role phone --execute
 ```
@@ -63,10 +63,10 @@ python scripts/create_fake_music_roots.py
 Then try:
 
 ```powershell
-music-scan --root ".\manual-test-libraries\Laptop\Music" --role laptop --label Laptop --cache ".\.music-ledger-cache"
-music-scan --root ".\manual-test-libraries\Archive\Music" --role archive --label Archive --cache ".\.music-ledger-cache"
-music-scan --root ".\manual-test-libraries\Phone\Music" --role phone --label Phone --cache ".\.music-ledger-cache"
-music-scan --root ".\manual-test-libraries\Backup\Music" --role backup --label Backup --cache ".\.music-ledger-cache"
+music-scan --root ".\manual-test-libraries\Laptop\Music" --role laptop --cache ".\.music-ledger-cache"
+music-scan --root ".\manual-test-libraries\Archive\Music" --role archive --cache ".\.music-ledger-cache"
+music-scan --root ".\manual-test-libraries\Phone\Music" --role phone --cache ".\.music-ledger-cache"
+music-scan --root ".\manual-test-libraries\Backup\Music" --role backup --cache ".\.music-ledger-cache"
 music-report --cache ".\.music-ledger-cache" --artist-level "F/Frank Zappa" --artist-level "B/Beethoven" --artist-level "C/Chopin"
 music-copy --source ".\manual-test-libraries\Laptop\Music" --target ".\manual-test-libraries\Phone\Music" --source-role laptop --target-role phone --cache ".\.music-ledger-cache" --artist-level "F/Frank Zappa" --artist-level "B/Beethoven" --artist-level "C/Chopin"
 ```
@@ -89,7 +89,7 @@ The machine running the command also keeps cached drive snapshots. Default:
 Override for tests or a laptop-local cache:
 
 ```powershell
-python -m librarysync scan --root "E:\Music" --role archive --cache "C:\Users\You\Music\.music-ledger\known-drives"
+music-scan --root "E:\Music" --role archive --cache "C:\Users\You\Music\.music-ledger\known-drives"
 ```
 
 Or:
@@ -103,7 +103,7 @@ $env:LIBRARYSYNC_CACHE = "C:\Users\You\Music\.music-ledger\known-drives"
 ### Scan
 
 ```powershell
-music-scan --root "E:\Music" --role archive --label "Music drive"
+music-scan --root "E:\Music" --role archive
 ```
 
 Updates the drive ledger and writes a cached copy. First scan creates the drive id.

@@ -178,7 +178,7 @@ def read_drive_info(music_root: Path) -> DriveInfo:
     return read_drive_info_from_file(drive_json_path(music_root))
 
 
-def load_or_create_drive_info(music_root: Path, role: str | None, label: str | None) -> DriveInfo:
+def load_or_create_drive_info(music_root: Path, role: str | None) -> DriveInfo:
     if role is not None and role not in ROLES:
         raise ValueError(f"Unknown role: {role}. Expected one of: {', '.join(sorted(ROLES))}")
 
@@ -187,12 +187,11 @@ def load_or_create_drive_info(music_root: Path, role: str | None, label: str | N
         info = read_drive_info(music_root)
         changed = False
         next_role = info.role
-        next_label = info.label
         if role is not None and role != info.role:
             next_role = role
             changed = True
-        if label is not None and label != info.label:
-            next_label = label
+        next_label = next_role
+        if next_label != info.label:
             changed = True
         if changed:
             info = DriveInfo(
@@ -212,7 +211,7 @@ def load_or_create_drive_info(music_root: Path, role: str | None, label: str | N
     info = DriveInfo(
         drive_id=str(uuid.uuid4()),
         role=role or "unknown",
-        label=label or music_root.name,
+        label=role or "unknown",
         created_at=now,
     )
     write_drive_info(music_root, info)
@@ -283,12 +282,11 @@ def iter_files(music_root: Path) -> Iterable[Path]:
 def scan_music_root(
     root: str | Path,
     role: str | None = None,
-    label: str | None = None,
     cache_dir: str | Path | None = None,
 ) -> DriveInfo:
     music_root = normalize_music_root(root)
     ledger_dir(music_root).mkdir(parents=True, exist_ok=True)
-    info = load_or_create_drive_info(music_root, role, label)
+    info = load_or_create_drive_info(music_root, role)
 
     now = utc_now_iso()
     existing_first_seen = _load_first_seen(manifest_path(music_root))

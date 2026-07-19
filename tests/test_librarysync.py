@@ -11,7 +11,13 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from librarysync.copying import CopyOptions, plan_chunks, run_copy
-from librarysync.ledger import is_reportable_relative_path, load_records, manifest_path, scan_music_root
+from librarysync.ledger import (
+    is_reportable_relative_path,
+    load_records,
+    manifest_path,
+    read_drive_info,
+    scan_music_root,
+)
 from librarysync.reporting import render_report
 
 
@@ -21,6 +27,18 @@ def write_file(path: Path, content: bytes) -> None:
 
 
 class LibrarySyncTests(unittest.TestCase):
+    def test_scan_uses_role_as_drive_label(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "Laptop" / "Music"
+            cache = Path(temp) / "cache"
+            root.mkdir(parents=True)
+
+            info = scan_music_root(root, role="laptop", cache_dir=cache)
+            drive_info = read_drive_info(root)
+
+            self.assertEqual(info.label, "laptop")
+            self.assertEqual(drive_info.label, "laptop")
+
     def test_scan_records_all_files_but_reportable_filter_is_music_plus_playlist_cue(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp) / "Laptop" / "Music"

@@ -22,7 +22,6 @@ def build_parser() -> argparse.ArgumentParser:
     scan_parser = subparsers.add_parser("scan", help="Scan one connected Music root.")
     scan_parser.add_argument("--root", required=True, help="Path to the Music root.")
     scan_parser.add_argument("--role", choices=sorted(ROLES), help="Drive role.")
-    scan_parser.add_argument("--label", help="Human-readable drive label.")
     add_cache_argument(scan_parser)
     scan_parser.set_defaults(func=handle_scan)
 
@@ -41,8 +40,6 @@ def build_parser() -> argparse.ArgumentParser:
     copy_parser.add_argument("--target", required=True, help="Target Music root.")
     copy_parser.add_argument("--source-role", choices=sorted(ROLES), help="Source role.")
     copy_parser.add_argument("--target-role", choices=sorted(ROLES), help="Target role.")
-    copy_parser.add_argument("--source-label", help="Source label.")
-    copy_parser.add_argument("--target-label", help="Target label.")
     copy_parser.add_argument(
         "--artist-level",
         action="append",
@@ -63,10 +60,9 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def handle_scan(args: argparse.Namespace) -> int:
-    info = scan_music_root(args.root, role=args.role, label=args.label, cache_dir=args.cache)
+    info = scan_music_root(args.root, role=args.role, cache_dir=args.cache)
     print(
-        f"Scanned {info.label or info.drive_id} "
-        f"role={info.role} files={info.file_count} reportable={info.reportable_count} "
+        f"Scanned role={info.role} files={info.file_count} reportable={info.reportable_count} "
         f"at {info.last_scan_at}"
     )
     return 0
@@ -84,8 +80,6 @@ def handle_copy(args: argparse.Namespace) -> int:
             target=args.target,
             source_role=args.source_role,
             target_role=args.target_role,
-            source_label=args.source_label,
-            target_label=args.target_label,
             cache_dir=args.cache,
             execute=args.execute,
             yes=args.yes,

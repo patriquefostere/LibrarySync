@@ -125,12 +125,10 @@ def render_known_drives(snapshots_by_role: dict[str, Snapshot], grouped: dict[st
         extra = ""
         if len(grouped.get(role, [])) > 1:
             extra = f" ({len(grouped[role])} cached, newest selected)"
-        drive = snapshot.drive
         lines.append(
             "  "
-            f"{role}: {drive.label or drive.drive_id} "
-            f"scanned {drive.last_scan_at or 'never'} "
-            f"files {drive.reportable_count or 0} reportable{extra}"
+            f"{role}: scanned {snapshot.drive.last_scan_at or 'never'} "
+            f"files {snapshot.drive.reportable_count or 0} reportable{extra}"
         )
     return lines
 

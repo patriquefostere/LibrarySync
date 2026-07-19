@@ -40,8 +40,6 @@ class CopyOptions:
     target: str
     source_role: str | None = None
     target_role: str | None = None
-    source_label: str | None = None
-    target_label: str | None = None
     cache_dir: str | None = None
     execute: bool = False
     yes: bool = False
@@ -191,13 +189,11 @@ def run_copy(options: CopyOptions) -> int:
     scan_music_root(
         source_root,
         role=options.source_role,
-        label=options.source_label,
         cache_dir=options.cache_dir,
     )
     scan_music_root(
         target_root,
         role=options.target_role,
-        label=options.target_label,
         cache_dir=options.cache_dir,
     )
 
@@ -253,7 +249,6 @@ def run_copy(options: CopyOptions) -> int:
     scan_music_root(
         target_root,
         role=options.target_role,
-        label=options.target_label,
         cache_dir=options.cache_dir,
     )
     print(f"Done. Copied {copied_total} files; skipped {skipped_total}.")
