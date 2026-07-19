@@ -4,6 +4,7 @@ import json
 import os
 import shutil
 import sqlite3
+import unicodedata
 import uuid
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -12,6 +13,7 @@ from typing import Iterable
 
 LEDGER_DIR_NAME = ".music-ledger"
 DEFAULT_CACHE_ENV = "LIBRARYSYNC_CACHE"
+SCHEMA_VERSION = 1
 REPORT_MUSIC_EXTENSIONS = {".mp3", ".flac", ".m4a", ".wav", ".mp4", ".m4v", ".mka"}
 ROLES = {"laptop", "archive", "phone", "backup"}
 MTIME_TOLERANCE_NS = 2_000_000_000
@@ -79,7 +81,7 @@ def relative_to_music_root(music_root: Path, file_path: Path) -> str:
 
 
 def path_key(relative_path: str) -> str:
-    return relative_path.replace("\\", "/").casefold()
+    return unicodedata.normalize("NFC", relative_path.replace("\\", "/")).casefold()
 
 
 def split_relative(relative_path: str) -> list[str]:
@@ -226,6 +228,7 @@ def _connect_manifest(path: Path) -> sqlite3.Connection:
 
 
 def _create_manifest_schema(conn: sqlite3.Connection) -> None:
+    conn.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
     conn.execute(
         """
         CREATE TABLE files (
@@ -272,7 +275,8 @@ def iter_files(music_root: Path) -> Iterable[Path]:
         elif is_under_ledger(rel_current):
             dirnames[:] = []
             continue
-        for filename in filenames:
+        dirnames.sort(key=str.casefold)
+        for filename in sorted(filenames, key=str.casefold):
             file_path = current_path / filename
             rel_file = relative_to_music_root(music_root, file_path)
             if not is_under_ledger(rel_file):
@@ -343,6 +347,7 @@ def scan_music_root(
             "label": info.label,
             "file_count": str(file_count),
             "reportable_count": str(reportable_count),
+            "schema_version": str(SCHEMA_VERSION),
         }
         conn.executemany(
             "INSERT INTO meta(key, value) VALUES (?, ?)",

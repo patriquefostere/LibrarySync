@@ -4,6 +4,7 @@ import contextlib
 import io
 import os
 import shutil
+import sqlite3
 import sys
 import tempfile
 import time
@@ -15,9 +16,12 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from librarysync.copying import CopyOptions, build_file_actions, plan_chunks, run_copy
 from librarysync.ledger import (
+    iter_files,
     is_reportable_relative_path,
+    load_meta,
     load_records,
     manifest_path,
+    path_key,
     read_drive_info,
     scan_music_root,
 )
@@ -41,6 +45,42 @@ class LibrarySyncTests(unittest.TestCase):
 
             self.assertEqual(info.label, "laptop")
             self.assertEqual(drive_info.label, "laptop")
+
+    def test_scan_writes_schema_version_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "Laptop" / "Music"
+            cache = Path(temp) / "cache"
+            root.mkdir(parents=True)
+
+            scan_music_root(root, role="laptop", cache_dir=cache)
+            meta = load_meta(manifest_path(root))
+
+            self.assertEqual(meta["schema_version"], "1")
+            conn = sqlite3.connect(manifest_path(root))
+            try:
+                user_version = conn.execute("PRAGMA user_version").fetchone()[0]
+            finally:
+                conn.close()
+            self.assertEqual(user_version, 1)
+
+    def test_path_key_normalizes_unicode_and_case(self) -> None:
+        composed = "E/\u00c9lodie/song.mp3"
+        decomposed = "E/E\u0301lodie/SONG.MP3"
+
+        self.assertEqual(path_key(composed), path_key(decomposed))
+        self.assertEqual(path_key(composed), "e/\u00e9lodie/song.mp3")
+
+    def test_iter_files_uses_deterministic_order_and_skips_ledger_dir(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "Music"
+            write_file(root / "b" / "Two.mp3", b"two")
+            write_file(root / "A" / "two.mp3", b"two")
+            write_file(root / "A" / "One.mp3", b"one")
+            write_file(root / ".music-ledger" / "ignored.mp3", b"ignored")
+
+            relative_paths = [path.relative_to(root).as_posix() for path in iter_files(root)]
+
+            self.assertEqual(relative_paths, ["A/One.mp3", "A/two.mp3", "b/Two.mp3"])
 
     def test_scan_records_all_files_but_reportable_filter_is_music_plus_playlist_cue(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
