@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+import re
 import sqlite3
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from .ledger import (
     FileRecord,
@@ -30,6 +31,105 @@ class Group:
     file_count: int
     size: int
     records: tuple[FileRecord, ...]
+
+
+@dataclass
+class ArtistStructure:
+    has_direct_files: bool = False
+    has_named_container: bool = False
+    direct_folders: set[str] = field(default_factory=set)
+    nested_children: dict[str, set[str]] = field(default_factory=dict)
+
+
+STRUCTURAL_CONTAINER_NAMES = {
+    "albums",
+    "ambient",
+    "ballades",
+    "blues",
+    "bootlegs",
+    "cantatas",
+    "chamber music",
+    "classical",
+    "compilations",
+    "concertos",
+    "country",
+    "demos",
+    "electronic",
+    "eps",
+    "etudes",
+    "experimental",
+    "folk",
+    "funk",
+    "hip hop",
+    "impromptus",
+    "jazz",
+    "live",
+    "masses",
+    "mazurkas",
+    "metal",
+    "misc",
+    "nocturnes",
+    "operas",
+    "orchestral works",
+    "partitas",
+    "piano works",
+    "polonaises",
+    "pop",
+    "preludes",
+    "punk",
+    "quartets",
+    "reggae",
+    "remixes",
+    "rock",
+    "scherzos",
+    "singles",
+    "sonatas",
+    "soul",
+    "soundtracks",
+    "string quartets",
+    "suites",
+    "symphonies",
+    "various",
+    "waltzes",
+    "world",
+}
+
+ALBUM_SUPPORT_FOLDER_NAMES = {
+    "art",
+    "artwork",
+    "booklet",
+    "cover",
+    "covers",
+    "log",
+    "logs",
+    "media",
+    "scans",
+    "track",
+    "tracks",
+}
+
+
+def folder_name_key(name: str) -> str:
+    return " ".join(re.sub(r"[^a-z0-9]+", " ", path_key(name)).split())
+
+
+def is_decade_container(name: str) -> bool:
+    value = folder_name_key(name)
+    return value.endswith("0s") and bool(re.fullmatch(r"\d{2,4}s", value))
+
+
+def is_structural_container_name(name: str) -> bool:
+    value = folder_name_key(name)
+    return is_decade_container(name) or value in STRUCTURAL_CONTAINER_NAMES
+
+
+def is_album_support_folder(name: str) -> bool:
+    value = folder_name_key(name)
+    if value in ALBUM_SUPPORT_FOLDER_NAMES:
+        return True
+    return bool(
+        re.fullmatch(r"(?:cd|disc|disk|dvd|part|side|vol|volume)\s*[0-9ivx]+", value)
+    )
 
 
 def artist_path(relative_path: str) -> str:
@@ -78,24 +178,66 @@ def target_artists(records: dict[str, FileRecord]) -> set[str]:
     return {path_key(artist_path(record.relative_path)) for record in records.values()}
 
 
-def normalize_artist_level_overrides(artist_level_overrides: set[str] | None) -> set[str]:
-    return {
-        path_key("/".join(parts))
-        for value in artist_level_overrides or set()
-        if (parts := split_relative(value))
-    }
+def detect_artist_level_paths(records: list[FileRecord]) -> set[str]:
+    structures: dict[str, ArtistStructure] = {}
+    for record in records:
+        if not record.is_reportable:
+            continue
+        artist = artist_path(record.relative_path)
+        if not artist or path_key(artist) == "playlists":
+            continue
+
+        parts = split_relative(record.relative_path)
+        artist_parts = split_relative(artist)
+        relative_parts = parts[len(artist_parts):]
+        if not relative_parts:
+            continue
+
+        artist_key = path_key(artist)
+        structure = structures.setdefault(artist_key, ArtistStructure())
+
+        if len(relative_parts) == 1:
+            structure.has_direct_files = True
+            continue
+
+        direct_folder = relative_parts[0]
+        direct_key = path_key(direct_folder)
+        if is_structural_container_name(direct_folder):
+            structure.has_named_container = True
+
+        if len(relative_parts) == 2:
+            structure.direct_folders.add(direct_key)
+        else:
+            structure.nested_children.setdefault(direct_key, set()).add(relative_parts[1])
+
+    artist_level_paths: set[str] = set()
+    for artist_key, structure in structures.items():
+        if structure.has_direct_files or structure.has_named_container:
+            artist_level_paths.add(artist_key)
+            continue
+
+        for direct_key, nested_children in structure.nested_children.items():
+            if direct_key in structure.direct_folders:
+                continue
+            work_children = {
+                child for child in nested_children if not is_album_support_folder(child)
+            }
+            if len(work_children) > 1:
+                artist_level_paths.add(artist_key)
+                break
+    return artist_level_paths
 
 
 def candidate_group_key(
     record: FileRecord,
     existing_artists: set[str],
-    artist_level_overrides: set[str],
+    artist_level_paths: set[str],
 ) -> tuple[str, str] | None:
     artist = artist_path(record.relative_path)
     if not artist:
         return None
     artist_key = path_key(artist)
-    if artist_key in artist_level_overrides or artist_key not in existing_artists:
+    if artist_key in artist_level_paths or artist_key not in existing_artists:
         return "artist", artist
     return "album", album_path(record.relative_path)
 
@@ -103,13 +245,14 @@ def candidate_group_key(
 def group_candidates(
     records: list[FileRecord],
     target_records: dict[str, FileRecord],
-    artist_level_overrides: set[str] | None = None,
 ) -> list[Group]:
-    overrides = normalize_artist_level_overrides(artist_level_overrides)
+    artist_level_paths = detect_artist_level_paths(
+        [*records, *target_records.values()]
+    )
     existing_artists = target_artists(target_records)
     groups: dict[tuple[str, str], list[FileRecord]] = {}
     for record in records:
-        group_key = candidate_group_key(record, existing_artists, overrides)
+        group_key = candidate_group_key(record, existing_artists, artist_level_paths)
         if group_key is None:
             continue
         groups.setdefault(group_key, []).append(record)
@@ -160,7 +303,6 @@ def render_pair(
     target_group_records: dict[str, FileRecord] | None,
     source_issue: str | None = None,
     target_issue: str | None = None,
-    artist_level_overrides: set[str] | None = None,
 ) -> list[str]:
     lines = [f"{title}:"]
     if source_records is None or target_records is None or target_group_records is None:
@@ -172,7 +314,7 @@ def render_pair(
         return lines + [f"  skipped: {' and '.join(issues)}"]
 
     diff = diff_records(source_records, target_records)
-    groups = group_candidates(diff.source_only, target_group_records, artist_level_overrides)
+    groups = group_candidates(diff.source_only, target_group_records)
 
     source_size = sum(record.size for record in diff.source_only)
     lines.append(
@@ -242,7 +384,7 @@ def role_issue(role: str, snapshot: Snapshot | None, records: dict[str, FileReco
     return None
 
 
-def render_report(cache_dir: str | None = None, artist_level_overrides: set[str] | None = None) -> str:
+def render_report(cache_dir: str | None = None) -> str:
     snapshots = load_snapshots(cache_dir)
     latest, grouped = latest_snapshot_by_role(snapshots)
     laptop = latest.get("laptop")
@@ -273,7 +415,6 @@ def render_report(cache_dir: str | None = None, artist_level_overrides: set[str]
             records_by_role.get("archive") if archive else None,
             issues_by_role["laptop"],
             issues_by_role["archive"],
-            artist_level_overrides,
         )
     )
     lines.append("")
@@ -285,7 +426,6 @@ def render_report(cache_dir: str | None = None, artist_level_overrides: set[str]
             records_by_role.get("backup") if backup else None,
             issues_by_role["archive"],
             issues_by_role["backup"],
-            artist_level_overrides,
         )
     )
     lines.append("")
@@ -297,7 +437,6 @@ def render_report(cache_dir: str | None = None, artist_level_overrides: set[str]
             records_by_role.get("phone") if phone else None,
             issues_by_role["laptop"],
             issues_by_role["phone"],
-            artist_level_overrides,
         )
     )
     lines.append("")

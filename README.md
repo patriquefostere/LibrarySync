@@ -93,7 +93,12 @@ music-report
 
 Uses cached ledgers, so all drives do not need to be connected. `music-report --cache ".\.music-ledger-cache"` means “read cached snapshots from this project-local test cache.” It does not scan drives, copy files, or delete files.
 
-Use `--artist-level` for exceptional layouts where album-level grouping is wrong, such as Zappa decade folders or classical composer form folders.
+LibrarySync groups candidates at album level once the target already has that artist.
+When an artist uses an exceptional layout, it automatically groups that artist at artist
+level instead. This covers nested layouts like
+`F/Frank Zappa/1970s/1973 - Over-Nite Sensation/tracks`, where `1970s` is only a
+container, or `B/Beethoven/Symphonies/Symphony 1/tracks`, where `Symphonies` is a form
+folder rather than the work itself.
 
 Report sections:
 
@@ -115,11 +120,7 @@ Interactive grouping:
 
 - if artist absent from target, prompt once for artist
 - if artist exists on target, prompt per album
-- custom artist-level exceptions can be forced:
-
-```powershell
-music-copy --source "C:\Users\You\Music" --target "F:\Music" --source-role laptop --target-role phone --artist-level "F/Frank Zappa" --execute
-```
+- if artist has an exceptional nested or flat layout, prompt once for artist automatically
 
 Conflict replacement is explicit:
 
@@ -154,6 +155,6 @@ music-scan --root ".\manual-test-libraries\Laptop\Music" --role laptop --cache "
 music-scan --root ".\manual-test-libraries\Archive\Music" --role archive --cache ".\.music-ledger-cache"
 music-scan --root ".\manual-test-libraries\Phone\Music" --role phone --cache ".\.music-ledger-cache"
 music-scan --root ".\manual-test-libraries\Backup\Music" --role backup --cache ".\.music-ledger-cache"
-music-report --cache ".\.music-ledger-cache" --artist-level "F/Frank Zappa" --artist-level "B/Beethoven" --artist-level "C/Chopin"
-music-copy --source ".\manual-test-libraries\Laptop\Music" --target ".\manual-test-libraries\Phone\Music" --source-role laptop --target-role phone --cache ".\.music-ledger-cache" --artist-level "F/Frank Zappa" --artist-level "B/Beethoven" --artist-level "C/Chopin"
+music-report --cache ".\.music-ledger-cache"
+music-copy --source ".\manual-test-libraries\Laptop\Music" --target ".\manual-test-libraries\Phone\Music" --source-role laptop --target-role phone --cache ".\.music-ledger-cache"
 ```

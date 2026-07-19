@@ -26,12 +26,6 @@ def build_parser() -> argparse.ArgumentParser:
     scan_parser.set_defaults(func=handle_scan)
 
     report_parser = subparsers.add_parser("report", help="Report differences from cached scans.")
-    report_parser.add_argument(
-        "--artist-level",
-        action="append",
-        default=[],
-        help="Force artist-level grouping for a relative artist path, e.g. F/Frank Zappa.",
-    )
     add_cache_argument(report_parser)
     report_parser.set_defaults(func=handle_report)
 
@@ -40,12 +34,6 @@ def build_parser() -> argparse.ArgumentParser:
     copy_parser.add_argument("--target", required=True, help="Target Music root.")
     copy_parser.add_argument("--source-role", choices=sorted(ROLES), help="Source role.")
     copy_parser.add_argument("--target-role", choices=sorted(ROLES), help="Target role.")
-    copy_parser.add_argument(
-        "--artist-level",
-        action="append",
-        default=[],
-        help="Force artist-level grouping for a relative artist path, e.g. F/Frank Zappa.",
-    )
     copy_parser.add_argument("--execute", action="store_true", help="Actually copy files.")
     copy_parser.add_argument(
         "--yes",
@@ -73,7 +61,7 @@ def handle_scan(args: argparse.Namespace) -> int:
 
 
 def handle_report(args: argparse.Namespace) -> int:
-    print(render_report(args.cache, set(args.artist_level)))
+    print(render_report(args.cache))
     return 0
 
 
@@ -88,7 +76,6 @@ def handle_copy(args: argparse.Namespace) -> int:
             execute=args.execute,
             yes=args.yes,
             replace_conflicts=args.replace_conflicts,
-            artist_level=set(args.artist_level),
         )
     )
 

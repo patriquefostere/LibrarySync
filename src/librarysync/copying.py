@@ -52,18 +52,16 @@ class CopyOptions:
     execute: bool = False
     yes: bool = False
     replace_conflicts: bool = False
-    artist_level: set[str] | None = None
 
 
 def plan_chunks(
     source_records: dict[str, FileRecord],
     target_records: dict[str, FileRecord],
-    artist_level_overrides: set[str] | None = None,
 ) -> list[CopyChunk]:
     diff = diff_records(source_records, target_records)
     conflict_source_records = [source for source, _ in diff.conflicts]
     candidate_records = diff.source_only + conflict_source_records
-    groups = group_candidates(candidate_records, target_records, artist_level_overrides)
+    groups = group_candidates(candidate_records, target_records)
 
     chunks = [
         CopyChunk(
@@ -224,7 +222,7 @@ def run_copy(options: CopyOptions) -> int:
 
     source_records = load_records(manifest_path(source_root), reportable_only=False)
     target_records = load_records(manifest_path(target_root), reportable_only=False)
-    chunks = plan_chunks(source_records, target_records, options.artist_level)
+    chunks = plan_chunks(source_records, target_records)
 
     if not options.execute:
         print(render_dry_run(chunks, source_root, target_root, options.replace_conflicts))
