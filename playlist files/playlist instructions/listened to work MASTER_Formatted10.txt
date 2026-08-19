@@ -1,0 +1,28 @@
+
+ali farka toure replace on drive:
+- #1988 st(1c 3c 4nc 7c 9nc).
+- 1991 the river(1n 6n).
+- 1992 the source(3c 7c).
+- 1994 talking(1n 2c 3c 10c).
+- #1996 radio(1r 2c 4c 5n 8c 10c 13c).
+- 1999 nia(1n 5n 6n 8nc).
+- #2004 green(2n 3n 4nc 5nc 8n).
+- 2004 red(3n 6n 8n).
+
+
+gas replace on drive:
+- #1(1ac 2ns 3ac 4ns 5ns 6c).
+- #2(2n 3a 4n 5ns 6ac).
+- 3(1ns 2c 4ns).
+- 4(1a 3n).
+
+alla rakha:
+- shared remove claps(2n 3c).
+- param:  DONE
+   n: 2, 3, 5, 6, 7
+   c: 1, 2, 3, 4, 7
+
+done:-------------------- things under here get moved to the file of completed instructions
+
+motorhead:
+- album(1s 11r). 

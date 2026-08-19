@@ -1,0 +1,97 @@
+
+yellow magic orchestra:
+- 1978 st(2n 6n).
+
+
+chick corea :
+- # 1968 now(1n 2n 3n 4nc 7nc 8nc 10nc 12nc 13nc).
+- # 1976 corea(1ncb 2bc 3nbc 4n 5n 6n 7n 8bc)
+- 1978 secret (2n 6n 9s).
+good whole(1968 nc, 1976 n)
+singles(now(12), corea(3)) 
+
+barbara & ernie ADD :
+- # 1971 prelude to(2n 5nc 7nc 8nc 9c). 
+singles(2)
+
+
+
+fourtet REPLACE:
+- 2022 looking at your pager(1s 2ns).
+
+pessimist ADD :
+- 2017 st CHECK(2n 5ns 7s 9s).
+
+elijah knutsen ADD
+
+eva may ADD:
+- 2020 (1cb 2bnc).
+
+haruomi hosono REPLACE:
+- # 1973 hosono house(1nc 2nc 3n 5n 6n 10n).
+- 1976 bon voyage(3n 4n). 
+- # 1978 pacific(1nc 2nc 3nc 5n 8n).
+- 1979 the aegean sea(3ns 6nc 7n).
+- 1984 sfx(1n 7b).
+- # 1989 omni sight seeing(1b 3n 7s 9n 8ns 11n).
+- 1993 medicine compilation(2c 8ns 10bc).
+- 1993 mental sports mixes(5ns).
+- 1995 naga().
+- # 1996 interpieces(2n 3nc 4n 6ns 7ns).
+- # 1996 nde(1n 2ns 3n 4ns 5nc 6n 7n 8c).
+- # 1996 swing slow(1nc 4nc 5nc 7n 9n 10ns 12nc)
+- 2004 mix form CHECK(4 5ns 15n).
+- 2019 hochono house(2nc 3nc).
+
+bulgarian REPLACE : 
+- # 1975 1(1n 2n 3ncb 4c 8n 9ncb 10-11r ).
+- # 1987 2(1n 2cb 4c 7bc  8nc 10ncb 11n 12n 13n 14cb 15n 16cb).
+- # 1989 3(1bc 4nc 5nc 6bc 8nc 9r 11bc 12nc 13n 14cb).
+- # 1994 ritual(7r 10c 11r 12nc 14n 18n).
+- # 1998 4(1nc 2nc 3n 4nc 5n 6n 7n 9nc 10nc 11nc 12nc 13n 14n 15n 16nc 17n 18nc 20nc).  
+singles(3(11), 2(2), 1(2))
+good whole(2nc , 3nc)
+
+vampire weekend :
+- # 2008 st(1n 3ns 4n 6n 9n 10ns)
+- # 2013 modern(2n 3n 4ns 5n 6n)
+- # 2010 contra ADD (2n 3ns 5nc 6ns 9n).
+- 2019 father (5n 10nc 12n 13n).
+
+
+kelan phil cohran :
+- # 1967 on the beach(1nsl 2n 3c 4n 5ns).
+- # 2010 african(1nc 2bc 4nc 5nc 7nc 8bc).
+- # 2012 st(1ns 2n 3ns 4n 6n.)
+singles(2012 6)
+
+
+stevie wonder REPLACE:
+- # 1972 talking book(1ns 3c 4ns 5n 6ns 7n 8nc 9nc).
+- # 1973 innervisions(1n 2bnc 3n 4n 5ns 6ns 8ns 9n).
+- # 1974 fulfillingness(1n 2nc 4n 6ns 7ns 9ns 10ns)
+- # 1976 songs in the key (2nc 5ns 6ns 9ns 10n 12n 13n 15bc).
+SINGLES(don't you worry)
+GOOD WHOLE(all)
+
+
+REPLACE on laptop AND REOPEN:
+alvin lucier REPLACE
+elis regina REPLACE AND REOPEN
+leo svirsky
+oleg kustenko
+ravel
+shirley and co
+toumani
+bjork volta, biophilia
+chick corea albums
+clarissa donelly
+eva may
+jamie xx we're new here
+logic system
+miles davis boplicity
+oliver nelson
+the persuasions
+hrvatski
+
+###done:-------------------- todo: things under here get moved to the file of completed instructions

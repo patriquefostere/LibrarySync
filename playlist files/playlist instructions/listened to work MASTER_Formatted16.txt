@@ -1,0 +1,106 @@
+
+damu:
+- # 2018 dreams check ends(3nsl 4n 7n 9n 11r 12r 13r 14r).
+
+calibre: add to drive
+- all(1nsl).
+
+slick rick replace on ipod, drive:
+- 1988 the great: 
+   r: 1, 6, 10
+   n: 3-4, 8-9, 11-12
+   s: 11
+- 1991 the rulers: 
+   n: 1-4, 6, 8-10
+   s: 1-3, 10
+   l: 1, 3
+   r: 5, 12
+   c: 6
+- 1994 behind: 
+   n: 1-3, 5, 8, 10
+   s: 1, 8
+   c: 2-3, 5
+   r: 4, 6, 11
+   ?: 9
+- 1999 the art: 
+   r: 1, 16, 23-24
+   n: 2, 4-5, 9, 13-15, 17-18, 20
+
+brahms replace on drive, ipod:
+- clarinet quintet().
+- clarinet trio().
+- fantasias(r). remove from ipod, NOT Drive
+- pcon1 replace on drive().
+- pcon2().
+- sym 1().
+- sym 2().
+- sym 3().
+- sym 4().
+- v con().
+- sq 1().
+- sq 2().
+- sq 3().
+
+gunther shiel:
+- 2013 tree(1ab 2ab 3ab 4a).
+
+sons of kemet:
+- 2018 your: 
+   s: 1-3, 5, 7-8
+   n: 2-3, 6-7
+   l: 5, 8
+   c: 6
+
+ray charles replace on drive:
+- 1976 the great(1r 2n 3nc 4n 7ns 8n
+
+hiroshi yoshimura:
+- 1994 koto check ends: 
+   c: 1-4, 6-7, 12-16
+   b: 1-4, 12-16
+   n: 6-7, 9-11
+
+tashi wada:
+- 2018 frkwys(3b).
+
+velly joonas: add to drive, ipod
+- hing: 
+   r: 1, 10-11, 20
+   c: 2, 7, 12, 14, 16
+   ?: 17
+- stopp(1ns 2n).
+
+hubble:
+- 2013 st().
+
+ron carter:
+- 1969 where(r).
+
+teddy lasry:
+- 1976 e = mc2(3nc 7n).
+
+keith hudson:
+- 2006 entering(r).
+
+keith jarrett:
+- 1975 koln(4n).
+- 1977 survivors().
+
+badmeaningood check endings:
+- 1: 
+   r: 1, 13, 16
+   n: 3-4, 7-11, 14-15, 17
+   c: 3
+   s: 7, 11
+- 2: 
+   n: 2-3, 7, 11
+   s: 3, 7, 11
+   l: 7, 11
+   r: 13-20
+- 3: 
+   n: 4, 6-7, 9, 14
+   r: 11-12
+   s: 14
+- 4(r).
+
+done:-------------------- things under here get moved to the file of completed instructions

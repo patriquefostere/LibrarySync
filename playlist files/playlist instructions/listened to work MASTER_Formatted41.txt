@@ -1,0 +1,205 @@
+
+roger fakhr ADD :
+- 1976 fine anyway(2nc 3nc 4n 5nc 6nc 7n 9n 11nc 13n 17ns 18n).
+singles(17)
+good whole(n)
+
+
+takashi kokubo ADD :
+- 1993 jamaica().
+good whole(ambient)
+
+war REPLACE:
+- 1975 why(7n).
+singles(7)
+
+mort garson REPLACE :
+- 1963 our day nc 
+- 1968 love sounds(5nc). 
+- 1975 ataraxia(1n 3ns 4ns 6n 8ns).
+- 1976 plantasia (1n 2nc 3nc 5nc 6nc 7nc 8nc 9nc 10nc)
+- 2020 music from (4n 12n 14nc 16n 17nc 18n).
+- 1971 black mass/lucifer(2n 6n 7c)
+
+
+hiroshi sato ADD :
+- 1982 awakening(3nc 10nc 11n).
+
+
+dj hype ADD :
+- 1994 roll(singles sl)
+
+blackstar ADD :
+- 1995 alaska ride(singles sl)
+
+jon hassell:
+- 1980 fourth world 1(1c 2c 3c 4nc)
+- 1983 aka(2c 3c 5nc 7c)
+good whole(both)
+
+dick slessig ADD :
+- 2004 wichita(1b).
+good whole(1b).
+
+
+project pat ADD :
+- 2001 mista don't play(3n 4n 5n 6n 11nc 12n).
+singles(5) 
+
+karin krog:
+- 1986 freestyle(1c 2c 	3c 4c 5c 6c 9c).
+good whole(c)
+singles(5)
+
+
+yaeji ADD :
+- 2023 with a hammer(1nc 2ns 3nsl 4n  5n 7n 8ns 9ns 10ns 12c 13c)
+good whole(ns)
+
+brooke candy ADD :
+- 2019 sexorcism(1 2c 3nc 12s)
+
+kool and the gang :
+- 1974 light(2n 4n 5nc 6nc 7n 8c 9c)
+good whole(nc)
+singles(2)
+
+
+charli xcx ADD :
+- 2024 brat(2l 3s 5s 6l 7s 12sl 13sl 14ns 17sl)
+singles(6)
+
+the dream team ADD :
+- stamina(1l 2nsl 6nsl)
+singles(6)
+
+
+roslavets ADD :
+
+basil kirchin:
+- # 1966 abstractions(1n 2nc 4n 5nc 6c 13n 16n 17c 18n).
+
+
+lemon jelly DOWNLOAD AND ADD:
+- # 2000 st(2n 3nc 5n 6ns).
+- # 2005 64(4ns 7ns 8ns 9ns).
+singles(st 3)
+
+
+beach house:
+- 2006 st( 6nc 8c).
+- # 2015 depression(1nc 3nc 4c 6c 7c 8nc 9c) 
+single( 2015 3)
+GOOD WHOLE (2015 calm)
+
+nia archives ADD :
+- # 2022 forbidden feelingz(2sl 3nsl 4nsl)
+singles(4)
+
+
+sza ADD :
+- 2014 Z(8nc).
+singles(8)
+
+james brown REPLCAE :
+- 1974 damn(1n 2n 3ns 4nc 5n 6ns 8nc).
+singles(3)
+good whole(n)
+
+serge gainsbourg ADD :
+- 1969 jane(1nc 2nc 6nc 10nc).
+singles(1)
+
+miles davis REPLACE: 
+- 1959 kind of blue(1ncb 2nc 3cb 4nc 5cb). 
+- 1960 sketches of spain(1c 2n 3ns 5nc).
+- 1969 bitches brew().
+- 1969 in a silent way().
+- 1972 on the corner(2n 3n).
+- 1986 tutu().
+good whole(1959(nc), 1960(nc)).
+
+
+babatunde :
+- 1960 drums(1n 2n 3n 5n 6n 7n 9n).
+good whole(n)
+
+OSCOB ADD :
+- 2022 praise(1nc 2nc 3c 4nc 5c 6nc 7nc 10c 13c).
+good whole(c)
+
+grimes REPLACE :
+- 2020 miss( 4s 5sl 7ns 10ns 11s 13l 15sl).
+
+lil mariko ADD :
+- 2021 st(1n 2s 3s 5ns 6ns 7n)   
+singles(1)
+
+xtc ADD :
+- 1995 reload(2nsl)
+
+heart ADD :
+- 1975 dreamboat annie(2n 3n 4c 5nc 8n 9n)
+singles(2)
+good whole(n)
+
+
+flowdan: 
+- 2023 shella(1sl)
+singles(1)
+
+smoke city :
+- 1997 flying away(1n 2n 3nc 4n 6nc 7nsl 9nc 10nc).
+singles(1)
+good whole(n)
+
+
+the flamingos ADD :
+- 1959 flamingo serenade(1nc 2nc 3nc 5nc 6nc 8nc 9n 11nc)
+singles(1)
+good whole(nc)
+
+
+
+
+REPLACE on laptop AND REOPEN:
+alvin lucier REPLACE
+elis regina REPLACE AND REOPEN
+leo svirsky
+oleg kustenko
+ravel
+shirley and co
+toumani
+bjork volta, biophilia
+chick corea albums
+clarissa donelly
+jamie xx we're new here
+logic system
+miles davis boplicity
+oliver nelson
+the persuasions
+hrvatski
+###done:-------------------- todo: things under here get moved to the file of completed instructions
+
+future sound of london:
+- 1988 stakker(3sl).
+singles(3)
+
+donnie and joe emerson :
+- 1979 dreamin'(3nc).
+singles(3)
+
+
+giant swan :
+- 2017 celebrate(1s 2l).
+- 2018 whities(1l 2sl 3l).
+- 2019 st(1sl 2l 4s).
+singles(2019(1))
+
+machine girl :
+- 2014 wlfgrl: 
+   n: 5
+   l: 2-7, 10, 12
+   s: 5-7
+good whole(l) 
+singles(6)

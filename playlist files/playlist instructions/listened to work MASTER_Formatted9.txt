@@ -1,0 +1,179 @@
+
+nina simone:
+- at(r).
+- 1969 to(r).
+- #1971 here(2n 3n 4n 5n 6r 8ns).
+
+shuggie replace:
+- 1970 here(r).
+- 1971 freedom(1ns 2n).
+- #1974(1n 2nc 3nc 4n 5n 6nc 7c 8c 9n 10n 12ns).
+
+
+jethro replace on drive, dont delete:
+- 1969 stand(r).
+- 1971 aqua(r).
+- 1972 thick().
+
+gorillaz:
+- 2001(5n 6c 10n 11n).
+- #demon(2n 4n 5ns 6n 8n 9n 10ns 12ns).
+- #2010(2n 5n 6n 7ns 8ns 9n 11n 12s 13n 14nc 15c).
+
+sister nancy add to drive:
+- album(1n 2n 3n 6n 10c).
+
+gil scott:
+- #1971 pieces(1n 2c 3ns 4n 5ns 6nc 7c 8c 9c 10n 12n 14n).
+- 1972 free(1n 2c 3c 4c 5c).
+
+
+
+alla rakha:
+- shared remove claps(2n 3c).
+- param:  DONE
+   n: 2, 3, 5, 6, 7
+   c: 1, 2, 3, 4, 7
+
+done:-------------------- things under here get moved to the file of completed instructions
+
+
+total science:
+- 1: 
+   n: 1-2, 5-6, 11
+   s: 1-2, 5-6, 11
+   l: 1-2, 5-6, 11
+   r: 3-4, 7, 12
+- 2: 
+   n: 1-7, 9, 11
+   s: 1-7, 9, 11
+   l: 2, 5-7
+   r: 10
+
+jurassic 5:
+- power:
+   n: 2, 3, 4, 6, 7, 12
+   c: 3, 9
+   s: 4, 6
+   r: 14, 15, 16
+- quality (2ns 5n 11ns 14r).
+
+urban flavour: 
+- album:
+   n: 1, 2, 3, 4, 5, 6, 7, 8
+   s: 1, 2, 3, 4, 5, 6, 7, 8
+   l: 1, 7, 8
+
+inner vation:
+- album:
+   n: 2, 7, 8, 10
+   s: 2, 7, 8, 10
+   l: 2, 9, 10
+
+
+bailey:
+- album:
+   n: 13
+   s: 13
+   l: 5, 13
+
+the doors:
+- 1967 strange(1n 3n 7n 9nc).
+- 1967 st: 
+   n: 1, 6-7, 9, 11
+   s: 1
+   r: 4-5
+- 1971 la(keep 10nc r all).
+
+jaco:
+- birthday(1ns 5n 6n 8n 9n). DONE
+- st: 
+   c: 1, 3, 5, 7
+   n: 2, 4, 7
+   s: 2
+- word(2n 3n).
+
+roots manuva:
+- run: 
+   n: 2-4, 12-14
+   s: 3
+   r: 9, 16-17
+- duppy: 
+   n: 2, 4, 7
+   r: 6, 11-12
+
+
+weather report:
+- 1971 st: 
+   n: 2, 6
+   c: 4-6
+- 1973 sweet: 
+   n: 1, 4-5
+   s: 1
+   c: 5
+- 1974 mysterious(1ns 3n 7n).
+- 1975 tale(1ns 7r 8r).
+- 1976 black(1n 3n).
+
+fairport:
+- st: 
+   n: 3-4, 7, 11
+   s: 3
+   c: 4
+   r: 12
+- what(1c 5r 6n 11n).
+
+massive attack
+- blue: 
+   n: 1-6, 8
+   c: 3-5
+- protection: 
+   r: 1, 6-7, 9-10
+   c: 2, 4-5
+- mezzanine: 
+   n: 1, 3-5, 8, 11
+   c: 3, 5, 8, 11
+   r: 9
+
+
+lou reed:
+- st(1n 4n 5n 6n).
+- transformer: 
+   n: 1-2, 4-6, 10
+   s: 4
+   c: 5
+- berlin().
+
+led zep:
+- II(2n 3n 5n 6ns 9n).
+
+leon thomas:
+- album: 
+   c: 1, 4, 7, 17
+   n: 3-5, 8
+   s: 9
+   r: 10-14
+
+cymande:
+- album: 
+   n: 1, 4-5, 7-9, 12
+   c: 2, 5
+   s: 7
+   r: 10-11
+
+dirty projectors:
+- 2011 (2n 4n 7c).
+- 2012 (2n 3n 4n).
+
+Megan Sue Hicks
+- marantha(1nc 6c 7r 8r 9r).
+
+dr john:
+- 1968 gris(1c 3n 6n 7c).
+- 1972 gumbo(r).
+
+hannibal:
+- children(2ns 3nc).
+
+grandmaster flash:
+- message(r all but 7n).

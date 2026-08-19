@@ -1,0 +1,207 @@
+warpaint:
+- # fool(2n 3n 4ns 5r 6r 7r 8r 9n 10r).
+- # warpaint(2n 3ns 4ns 5r 7r 8c 10r 11c 12r).
+
+king:
+- #steps(1r 2ns 3r 4r 5r 7r 8r 9r 10r 11r 12r 13r 14r 15r 16r 17r).
+	
+eston nab:
+- # album(1ac 2a 3a 4a 5a 6c 7a 8a).
+
+john prine
+- # album(1n 3c 4c 5c 6n 8r 9n 10n).
+
+grachan:
+- 1963 evolution(1n 2c 3n).
+- 1974 echoes replace(2nsx` 
+
+jimi hendrix:
+- # are you(1n 2r 3n 5nc 6n 7n 10n 14n 15n 17n).
+- # axis(1r 2nc 3n 4n 6n 9n 10r).
+- # electric(3ns 4n 5n 7n 8n 9ns 13n 14n 15n 16n).
+- band(2n 4n 5n).
+
+don cherry:
+- 1979 old(1c 2nc).
+- #1980 codona(2c 4nc 6nc 12nc 13c 15c).
+
+cohen:
+-#best(7c 8c 9c 10r 11nc).
+-# songs(1nc 2nc 4nc 5c 6n 7c 9c 10r).
+- songs( 1c 4nc 6c 9r 10r).
+
+jaco replace on drive:
+- birthday(1ns 5n 6n 8n 9n).
+[5]  1976, Jaco Pastorius: 
+     - "Come On, Come Over"
+     - "Continuum"
+     - "Donna Lee"
+     - "Okonkole Y Trompa"
+     - "Portrait Of Tracy"
+[2]  1981, Word Of Mouth: 
+     - "Liberty City"
+     - "3 Views Of A Secret"
+
+shakti replace on drive:
+- a handful(1ns 2ns 3n 5n).
+- # natural(1n 2nc 3n 4nc 5n  6n 7n).
+- ST(2c).
+
+eurhythmics:
+- #album(1r 2r 3r 4r 5n 6n 7r 8r 9r 10c 11c 12n 14r 15r 16r).
+
+caroline shaw add to drive: 
+- album(1n 2c).
+
+eno replace on drive: 
+- # 1974 taking(1n 2rs 3c 4n 6ns 7r 8n 9n 10c).
+- # 1975 discreet(1a 2-4r). 
+- # 1975 another(2c 3n 4c 6c 9nc 10ac 11nc).
+- 1977 before(r).
+- 1978 ambient 1(1a 3a).
+- 1980 ambient 2(all a).
+- 1985 the pearl(a). 
+- 1989 textures(1-9a 12a 14-16c 19c 20-1a).
+- 1997 music (a).
+- 2014 new space(a).
+
+jonny greenwood:
+-# album(1n 2nc 3nc 5nc 6nc 7c 8n 9c 10nc 11c 12nc 13r 14r 15nc 16n).
+
+jeff buckley:
+- #grace(1n 2n 3r 4c 5n 6c 7n 8c 9r 10n 11n 12r 13c 14r 15c 16c 17c 18r 19n 20r 21r 22r).
+
+michael jackson:
+- off: 
+   n: 1-3, 5-6
+   s: 1, 5
+   r: 7-9
+
+big youth replace on drive: 
+- album:
+   n: 2, 4, 6, 7
+   c: 2, 5, 6
+
+jurassic 5 replace on drive: 
+- power:
+   n: 2, 3, 4, 5, 6, 7, 12
+   c: 3, 5, 9
+   s: 4, 6
+   r: 14, 15, 16
+- quality (2ns 5n 11ns 14r).
+
+cleaners from venus add to drive:
+- 1982 on any:
+   n: 2, 3, 4, 6, 7, 10
+   c: 2
+- 1984 UNDER:
+   n: 1, 3
+   s: 1
+   r: 4, 5, 6, 7, 8
+   c: 10
+- 1990 number:
+   n: 1, 2, 4, 5, 7, 8
+   c: 3
+   r: 9, 10, 11
+
+beck: add to drive
+- 1994 one:
+   c: 1, 2, 16
+   n: 2, 5, 8, 16
+   r: 4
+- 1996 ode1:
+   n: 1, 2, 3, 4, 10, 11
+   s: 4
+   r: 6, 12, 14, 15, 16, 17
+   c: 11, 13
+- 1996 ode2:
+   r: 2, 3, 6, 9, 11, 12, 14, 15, 16
+   n: 4, 13
+- 2005 guero:
+   n: 1, 5, 7, 9, 12
+   r: 3, 4, 6, 8, 13, 14, 15
+- midnite(1n 4n 5r 7n 9-11r).
+
+chick corea:
+- 1968 now:
+   n: 1, 2, 3, 4, 12
+   c: 7, 8, 12
+- 1976 corea:
+   n: 1, 2, 3, 5, 6, 7
+   c: 1, 2, 3, 8
+
+urban flavour: check endings on shuffle
+- album:
+   n: 1, 2, 3, 4, 5, 6, 7, 8
+   s: 1, 2, 3, 4, 5, 6, 7, 8
+   l: 1, 7, 8
+
+inner vation: check endings
+- album:
+   n: 1, 2, 3, 4, 7, 8, 9, 10
+   s: 1, 2, 3, 4, 5, 7, 8, 9, 10
+   l: 2, 3, 5, 9, 10
+
+bailey:
+- check ends on shuffle:
+   n: 1, 3, 4, 5, 7, 10, 11, 13, 17, 18
+   s: 1, 3, 4, 5, 7, 10, 11, 13, 16, 17, 18
+   l: 3, 4, 5, 7, 10, 11, 13, 16, 17
+
+alla rakha:
+- shared remove claps(2n 3c).
+- param:  DONE
+   n: 2, 3, 5, 6, 7
+   c: 1, 2, 3, 4, 7
+
+Remove from existing playlists:
+- L: state
+- C: gyro, joni(shades), amok, bush, kraftwerk(krystallo)
+- A: stars(lagging, twin peaks 2, a live song, broken harbours), boards(aqua),
+- N: mchlaughlin(friends), avalanches(noisy)
+
+done:-------------------- things under here get moved to the file of completed instructions
+
+bertrand burgalat:
+- album:
+   n: 1, 2, 3, 4, 5, 6, 7, 8
+   c: 2, 4, 9
+   s: 5
+   r: 10
+
+boney:
+- night:
+   n: 2, 4, 7
+   s: 2
+   r: 5, 6, 8, 10
+- take:
+   n: 1, 3, 4, 8
+   s: 3, 4, 8
+   r: 5, 7
+
+dead or alive:
+- youthquake(1ns 3r 4r 6-8r 9n).
+
+elis regina: nc
+
+shirley and co: ns
+
+robert wyatt:
+- 1974 rockDONE (2c 4c)
+- 1975 ruthDONE (2c 5c 6n 7n 9c).
+- 1994 flotsamDONE (1n 4c 6nc 8nc 13-18r).
+- 1997 shleep(1n 3c 8c 9nc 12c).
+
+nucleus:
+- 1970 elastic(2c 9n 10c 11n 13n).
+- 1970 live r
+- 1971 solar(3n 5n).
+- 1971 we'll(1ns 3c 4n 6n).
+
+elijah knutsen:
+- blue(a).
+- music(a).
+- pink(1-3a 4r).
+
+ernest hood:
+- neighbourhoods(1c 2c 3c 4c 8c).

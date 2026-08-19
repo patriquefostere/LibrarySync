@@ -1,0 +1,113 @@
+
+macroblank ADD :
+- # 2022 痛​み​の​永​遠 eternity of pain(1n 2n 4n 5c 9nc 10nc).
+
+beige ADD :	
+- 2018 global(1ns).
+
+cochemea ADD:
+- # 2019 all(3ns 5nc 7nc 9n 10n)
+
+mutil umila ADD :
+- 2021 pinturitas CHECK(1nc 4nc).
+
+sugababes ADD :
+- 2000 one touch(1ns 8n).
+
+
+la pregunta ADD :
+- 1979 chameleon(1ns). 
+
+opus iii ADD AND DOWNLOAD :
+- # 1992 mind fruit(1nsl 2sl 4c 5sl 6sl 7nc 9n).
+
+
+antti lotjonen ADD :
+- 2021 erzeben(1n 2ns)
+
+lil wayne ADD :
+- # 2011 tha carter 4(4ns 5nc 13n 15n).
+
+block notice ADD :
+- 079 sl
+
+lil wayne ADD :
+- # 2011 tha carter 4(4ns 5nc 13n 15n).
+
+REPLACE: tribe called quest
+
+
+m-beat ADD/VERIFY VERSION :
+- 1996 knowledge: done
+   n: 1, 3, 6-7, 9
+   s: 1, 3, 5-7, 9-10
+   l: 1, 5, 7, 9-10
+
+
+zakir hussain REPLACE:
+-#  1991 w. the rhythm experience(1nc 3n 4n 8n).
+- 1993 magical(2n 5n 9n).
+- 1998 essence(1n 2c).
+- 1998 sambanhd(1n 2n 3nc).
+- 2005 sandscapes(2c 4c 5n)
+- 2006 sangeet 1().
+- 2006 sangeet 2()
+SINGLES(sambanhd)
+
+
+done:-------------------- todo: things under here get moved to the file of completed instructions
+
+moktar  :
+- 2021 st(1nsl 2sl).
+
+john mclaughlin :
+- 1969 extrapolation: 
+   n: 2-4, 7
+   c: 5
+- 1973 love(2c 5c).
+- 1978 electric(1n 5n).
+
+william onyeabor :
+- 1983 who: 
+   n: 1-5, 7-9
+   s: 3, 7-8
+
+ltj bukem  :
+- 1996 the rebirth (3n 5ns).
+
+trevor watts :
+- 1979 endgame()
+- 1981 stella: 
+   n: 1, 3-5, 8
+   c: 1, 3, 5, 7-8
+- 1993 a wider embrace(3ns 5n 9c 10nc).
+- 1993 moire(ns).
+
+leo svirsky  :
+- 2019 river without banks: 
+   c: 1-2, 4-5
+
+frank foster :
+- 1972 loud minority(2n 3n).
+
+new young pony club  :
+- 2007 fantastic: 
+   n,s: 1-3, 5, 8
+
+grimes :
+- 2012 visions: 
+   n: 2-3, 8, 10-11, 15
+   s: 2, 8
+
+uniting of opposites  :
+- 2018 mints(1n 2n).
+
+piri & tommy :
+- 2022 froge: 
+   n: 2-3, 5
+   s: 2-3, 5, 12
+   l: 2, 5, 12
+
+jeremiah chu :
+- 2017 recordings:
+   c: 1-4, 6, 8-10

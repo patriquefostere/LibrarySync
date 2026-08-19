@@ -1,0 +1,62 @@
+
+archie shepp:
+- 1965 fire(r).
+- 1969 blase(3bc).
+- 1972 attica(1ns 3nc 5n 6n 8n 9n 10n).
+- 1974 kwanza(1ns 2n 4n).
+
+joe henderson:
+- 1973 canyon(1n 2nc 3n 4ns).
+- 1973 elements(1n 4nc).
+
+earth (ltj bukem) add/replace:
+- # 1996 earth 1(1ns 2ns 3ns 4nsl 5n 6ns 7ns 9ns 10nsl). 
+- # 1997 earth 2(2nc 3n 4n 5nc 6c 7c 8ns 9ns).
+- # 1998 earth 3(1r 2nc 6n 8n 9n 10ns).
+- # 2000 earth 4(1n 2ns 4ns 5r 7ns 8nsl 9nsl 11nsl).
+- 2001 earth 5(5ns 6c 8n 11r 12n).
+- # 2003 earth 6(2nsl 3n 4ns 6n).
+- 2004 earth 7(r).
+
+deltron:
+- # 2000 st(1r 2n 4n 8n 10n 12n 14n 18n 19n 20n).
+	
+breakbeat era ADD:
+- # 1999 ultra(1ns 2ns 3nsl 4ns 5ns 6ns 7nsl 8nsl 10nsl 13sl).
+
+stice add:
+- # 2019 the very check ends(1n 2n 3ns 4sl 5ns 6ns 7ns 9s).
+- 2020 here(4s 7sl 8n).
+
+sophie add:
+- 2015 product(r).
+
+godspeed add:
+- 2002 yanq().
+
+ltj bukem: add to drive, ipod (ADD TO DRIVE, *THEN* DELETE TRACKS/ALBUMS OFF PC)
+- 1991 delitefol(r)
+- 1992 demons(1nsl).
+- 1993 atmos(1nsl).
+- 1993 bang(1r 2n).
+- 1993 music(1ns 2r).
+- 1993 return(1sl 2nsl).
+- 1993 the bookworm(1nsl 2nsl).
+- 1994 19.5(1nsl 2nsl).
+- 1995 horizons(1nsl 2nsl).
+- 1995 # check ends intel(2nsl 3ns 4l 5sl 6sl 7nsl 8nsl 10nsl 11sl).
+- 1998 check ends myst(1nsl 2nsl 3nsl).
+- # 2000 check ends journey(1n 2ns 3ns 4ns 5n 7n 8r 10nc 11ns 13nc).
+- 2000 check ends susp(1ns 2ns 3ns).
+
+roni size replcae on drive check ends:
+- # 1997 new 1(1nsl 2nsl 3n 5n 8ns 9sl 12sl 13nsl).
+- # 1992 new 2(2sl 3ns 4ns 6ns 7ns 8ns 10l).
+- 2000 in the(3ns 4-14r 15ns 16r).
+- # 2002 check ends touch(2l 4l 5l 7l 8sl 9l 10l 14sl).
+- 2004 return(r).
+- #2008 new 2(11nsl 12nsl 13nsl 14r 15r 16r 17sl).
+- 2014 take(r).
+- 2016 past(1sl 2sl 4sl).
+
+done:-------------------- things under here get moved to the file of completed instructions
