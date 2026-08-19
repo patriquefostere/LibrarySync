@@ -35,6 +35,15 @@ music-report
 music-copy --source "C:\Users\You\Music" --target "F:\Music" --source-role laptop --target-role phone --execute
 ```
 
+If the Python `Scripts` folder is not on `PATH`, use the module entry point instead:
+
+```powershell
+python -m librarysync scan --root "C:\Users\You\Music" --role laptop
+python -m librarysync scan --root "E:\Music" --role archive
+python -m librarysync report
+python -m librarysync copy --source "C:\Users\You\Music" --target "F:\Music" --source-role laptop --target-role phone --execute
+```
+
 For testing without touching real drives:
 
 ```powershell
