@@ -1,0 +1,101 @@
+
+prefab sprout ADD :
+- 2003 I trawl(1c).
+
+fourtet ADD :
+- 2008 ringer(1n 2ns).
+- # 2010 there is(2ns 5ns 6n 8ns).
+- # 2012 pink(1n 3ns 4ns 6ns 7nc 8ns).
+
+melody's echo chamber ADD :
+- # 2012 st(1n 5nc 7n 10n 11n).
+ 
+sadao watanabe ADD :
+- 1971 paysages(2nc 4c).
+
+dorothy ashby ADD :
+- # 1969 dorothys harp(1ns 2nc 3n 4nc 5nc 8c 10nc 11n).
+
+starcrost ADD :
+- 1976 st(1n 3nc 4n 10n).
+
+post materialization music ADD :
+- 2019 wedding().
+
+ted milton ADD :
+- 2012 the odes(2n 3n 4nc 6nc).
+
+jan steele ADD :
+- 1976 voices(1c 8c).
+
+the new movement ADD (r)
+
+the fantastic plastic machine ADD :
+- 1997 st(8ns).
+- 1998 luxury(7ns 14n).
+- 2001 beautiful(2s 3ns 4ns).
+
+melvin bliss(n) ADD 
+
+beach boys ADD :
+- 1973 holland(r).
+
+martha skye murphy ADD :
+- 2020 yours truly(r).
+
+bjork:
+- # 1990 gling(1c 2nc 3n 6nc 8n 9c 13nc 15n).
+- # 1993 debut(1n 2ns 3c 5bc 7n 8c 9nc 10s 11bc 12ns).
+- # 1995 post(2n 3n 4n 5n 7ns 8c 11c).
+- # 1997 homo(1n 2n 3c 4ns 5n 7n 8n).
+- # 1997 telegram(5nc 6nc 7c 8ls 11sl).
+- 2000 selma(2ns 4nc 5n).
+- # 2001 vesp(1n 2cn 3n 8n 10n 12n).
+- # 2004 medulla(1c 5c 6n 8c 9n 14ns )
+- 2005 army(r).
+- 2005 draw().
+- 2007 volta(5c 7c 8nc 9s 11ns).
+- 2011 biophilia(1c).
+- 2012 bastards(r).
+- 2105 vulnicura(r).
+- 2015 vulnicura strings(r).
+- 2017 utopia(r).
+
+cleaners from venus ADD :
+- # 1982 midnight cleaners(1n 4n 5n 6c 8nc 9n).
+
+daphne oram ADD (r)
+
+wolfgang dauner & charlie mariano ADD :
+- 1986 meditations tagore(1c 2c 3c 5n 6nc 7nc 9c).
+
+lonnie holley ADD : 
+- 2018 MITH(1c 2nc 3n 7c 8nc 10). 
+
+terry riley ADD :
+- 1963 music for the gift(r).
+- 1965 bird of paradise(r).
+- 1967 olson iii().
+
+caetano veloso ADD :
+- 2006 cinema(1c 2c).
+
+elias rahbani ADD :
+- 1972 mosaic(6c 9n 10c 12r).
+
+irwin chusid ADD :
+- 2000 songs1(10n 12c).
+- 2000 songs2(2ns 6c).
+
+joanna newsome ADD:
+- 2006 ys(1n 2c).
+
+bonzo :
+- 1968 the doughnut CHECK ENDS(2nc 3n 5nc 7n).
+
+binker and moses :
+- 2018 alive CHECK ENDS: 
+   n: 1-4, 6, 9
+   s: 1-2, 4, 6
+
+done:-------------------- things under here get moved to the file of completed instructions

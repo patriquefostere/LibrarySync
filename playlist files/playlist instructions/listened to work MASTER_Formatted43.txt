@@ -1,0 +1,230 @@
+
+le tigre ADD :
+- 1999 st(1ns 2n 3n 6nc 9nc)
+singles(1, 2)
+modern moody(6, 9)
+
+
+
+lemon jelly ADD:
+- 2000 st: 
+   n: 2-3, 6
+   c: 3
+   s: 6
+- 2005 64: 
+n: 3
+   n,s: 4, 7-8
+singles(st 3)
+
+
+bearer ADD:
+- 2020 precincts(4nc)
+goodwhole(calm)
+
+a produce ADD:
+- 2023 the clearing(6n 10c) 
+
+
+slayyyter ADD :
+- 2023 starfucker(1ns 3sl 4sl 6s 10sl 11sl 12sl 14n).
+singles(1, 3)
+post 2015(1, 3, 4, 6, 12, 11, 10, 9)
+
+zakir hussain :
+- 1991 rhythm experience(1nc)
+
+calvin harris ADD :
+- 2007 i created disco(5nsy) 
+singles(5)
+
+
+cobrah ADD:
+- 2021 st(1sl 2sl 3nsl 4l 5nsl)
+- 2022 brand new bitch(1sl)
+- 2022 good puss(1sl)
+- 2023 succubus(1l 2sl 3s 4sl 5s 6s 7s)
+singles(2021(1, 5), brand new bitch, good puss, 
+good whole(2021(sl), 2023(sl))
+
+
+eartheater REPLACE:
+- 2015 RIP chrysalis(4c 5c 8c)
+
+grimes REPLACE :
+- 2020 miss(4ns 5nsly 7ns 8n 9n 10ns 11nsy 12ns 13nsy).
+
+massive attack :
+- 1991 blue lines(1nc 2nc 3nc 4nc 5nc).
+- 1994 protection( 1nc 3nc 4c) .
+- 1998 mezzanine(1n 2n 3nc 4n 5nc 8nc).
+- 2003 100th floor window(1nc 2c 3nc 4c 7c). 	 
+- 2010 heligoland(1nc 2n 5nc 7nc)
+singles(1991(3), 1998(3), 2010(7)
+good whole(1991, 1998, 2003)
+
+
+cabaret voltaire ADD : 
+- 1988 eight crepuscule tracks(4n 5nc 7nc 8nc).
+	
+	
+princess nokia ADD :
+- 2025 girls(2ns 3ns 4ns 5c 6sl 8nsl 9ns 11n).
+
+
+bushbaby ADD :
+- cutty dub(singles sly)
+
+bowie REPLACE
+bjork REPLACE
+yung lean ADD 
+donnie and joe ADD 
+future sound of london ADD 
+flowdan ADD
+oleg kutsenko
+hiroshi yoshimura REPLACE
+
+
+
+###done:-------------------- todo: things under here get moved to the file of completed instructions
+
+
+confidence man ADD? :
+- 2018 confident music for confident people(4sl)
+- 2022 TILT: DONE
+   n: 6
+   s,l,y: 2, 4-6, 11
+singles(tilt(11), 
+
+
+dead or alive REPLACE:
+- 2016 sophisticated boom box( 11n) DONE
+- 1983 sophisticated boom boom(4n 8ns 9ns 10ns)
+singles(1983(10))
+
+dengue ADD :
+- 2016 siete raices(4ns 5ns). DONE
+- 2019 zenit: 
+   n: 2-3, 5, 7, 9-10, 12
+   c: 12
+   s: 5, 7, 9
+   l: 7, 9
+- 2020 fiebre: 
+   n: 1-4, 6-7
+   s: 1, 3-4, 6
+good whole(2019n, 2020ns)
+
+eartheater ADD? :
+- 2018 trinity: DONE
+   n: 1-4, 7-10
+   c: 4, 7
+   s: 1-3, 9-10
+- 2023 powders: 
+   n: 2, 4, 7-8
+   c: 2, 4, 7, 9
+   s,l,y: 8
+singles(2)
+goodwhole(2018n)
+
+fleetwood mac ADD :
+- 1969 the pious bird of good omen(5nc 10c).
+singles(5) DONE
+
+
+gabor szabo REPLACE :
+- 1966 jazz: DONE
+   n: 1-2, 5, 8-11
+   c: 1-2, 5, 9-11
+- 1968 dreams: 
+   n,c: 1-3, 6-7
+- 1972 small(2nc 3nc 8c)
+- 1975 macho(2nc 6nc).
+good whole(1968nc, 1966nc)
+
+men i trust ADD :
+- 2019 oncle jazz: DONE
+   n: 2, 4, 6-10, 15, 18-20
+   c: 2, 5-10, 15, 18, 20, 22
+singles(6)
+
+nas REPLACE:
+- 1994 illmatic: DONE
+   n: 2-10
+   c: 3-4, 6-8, 10
+singles(10)
+good whole(1994n)
+
+
+
+orbital ADD? :
+- 1993 orbital 2 (7s, 9ns) DONE
+singles(9)
+
+rl burnside ADD :
+- 1998 come on in:  DONE
+   n: 3-5, 7, 10-11
+   c: 2
+   s: 3, 5, 7
+goodwhole(n)
+singles(10)
+
+
+roger fakhr ADD? :
+- 1976 fine anyway: done
+   n: 2-7, 9, 11, 13, 17-18
+   c: 2-3, 5-6, 11
+   s: 17
+good whole(n)
+singles(17)
+
+serge gainsbourg ADD? :
+- 1969 jane(1nc 2nc 6nc 10nc). DONE
+singles(1)
+
+television ADD :
+- 1977 marquee moon: DONE
+   n: 1-2, 4-5, 7-9
+singles(4n)
+good whole (1977n)
+
+the buttress ADD :
+- 2023 endofunctor: DONE
+   n: 1, 4, 7-9
+   c: 9
+   s: 1, 4, 7
+- 2017 brutus(ns)
+- 2014 behind every great man: 
+   n: 1, 3-4, 6-9
+   s: 1, 3-4, 7
+good whole(2014n)
+singles(2023(7), brutus, 2014(4))
+
+the daughters of eve ADD:
+- 1965 hey lover(1n) DONE
+singles(1)
+
+
+the fires of ork ADD :
+- 1993 st(1ns 3n 4c 5ns)
+
+air :
+- 1998 moon safari(1nc 2c 3c 5nc).
+singles(1)
+
+
+brooke candy : 
+- 2019 sexorcism(2nc 3n 12s)DONE 
+singles(12)
+
+
+yung lean :
+- 2013 lavender(2nc 3c). DONE
+singles(2)
+
+william devaughn ADD :
+- 1974 be thankful for what you've got(1nc 2c 6nc ) DONE
+singles(6)
+
+
+truby trio ADD :
+- 2003 elevator music(7nsly). DONE
+singles(7)

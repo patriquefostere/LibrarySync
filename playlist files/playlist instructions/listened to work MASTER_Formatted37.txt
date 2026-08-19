@@ -1,0 +1,234 @@
+
+saint etiene ADD :
+- # 1991 foxbase(4c 6nc 7nc 9ns).
+SINGLE(9)
+
+missus beastly:
+- # 1976 dr(1ns 2n 5ns 6n 8c 9n).
+singles(2)
+
+nala sinephro :
+- # 2021 space (1cb 2nc 4n 5cb 6n).
+
+charles wright :
+- #1970 express(1n 2n 4n 5n 6n ).
+singles(4)
+good whole(n)
+
+
+dj laz ADD :
+- 1991 st(1ns 2s 4s 8n ).
+- # 1996 king(3ns 4s 7n 11n 12ns) 
+dj(st 1) 
+singles(st 1)
+
+minoru muraoka:
+- 1976 shakuhachi(3nc 5n 6n).
+
+
+hypnonsis therapy ADD:
+- # 2023 psilocybin(1sl 2sl 3sl 4sl 5sl 6sl 7sn 10ns)
+good whole(sl)	
+singles(6)
+
+liquid liquid ADD :
+- 1983 optimo(1ns 2ns)
+
+REPLACE AND REOPEN:
+alvin lucier REPLACE
+elis regina REPLACE AND REOPEN
+leo svirsky
+oleg kustenko
+ravel
+shirley and co
+toumani
+
+
+the ronettes :
+- # 1992 best of(1n 3n 10n 13n 14ns).
+singles(14 CHECK)
+
+readd to laptop and reopen:
+bjork volta, biophilia
+caetano 2006
+chick corea albums
+clarissa donelly
+eva may
+jamie xx we're new here
+logic system
+miles davis boplicity
+oliver nelson
+the persuasions
+
+
+###done:-------------------- todo: things under here get moved to the file of completed instructions
+
+la pregunta :
+- 1979 chameleon(1ns).
+
+m-beat :
+- 1996 knowledge: done
+   n: 1, 3, 6-7, 9
+   s: 1, 3, 5-7, 9-10
+   l: 1, 5, 6-7, 9-10
+
+arthur verocai :
+- 1972 st: 
+   n: 1-9
+   c: 2, 5-6, 8
+   s: 7
+
+the beatles:
+- anything earlier: remove
+- 1965 rubber(2n 7nc).
+- 1966 revolver: 
+   n: 1-2, 5, 9, 11, 14
+   c: 5
+   s: 14
+- 1967 magical: 
+   n: 1-2, 4-6, 8-9
+- 196 sgt pepper: 
+   n: 4, 7-8
+   c: 6, 8
+- 1968 white: 
+   n: 2-3, 7-8, 11, 16, 27
+   c: 11, 16-17
+- 1969 abbey(1n 2n 10nc).
+SINGLES(abbey 1)
+
+alt j :
+- 2012 an awesome: 
+   n: 1, 3-4, 6, 8, 10
+   s: 4
+singles(3)
+
+beige :
+- 2018 global(1ns).
+
+cochemea :
+- 2019 all:
+
+   n: 3, 5, 7, 9-10
+
+   s: 3
+
+   c: 5, 7
+
+mutil umila  :
+- 2021 pinturitas (1nc 4nc).
+
+sugababes :
+- 2000 one touch(1ns 8n).
+
+opus iii :
+- 1992 mind fruit:
+
+   n: 1, 7, 9
+
+s,l: 1-2, 5-6
+
+antti lotjonen :
+- 2021 erzeben(1n 2ns)
+
+lil wayne :
+- 2011 tha carter 4:
+
+   n: 4-5, 13, 15
+
+   s: 4
+
+   c: 5
+
+block notice :
+- 079 sl
+
+zakir hussain :
+- 1991 w. the rhythm experience:
+
+   n: 1, 3-4, 8
+
+   c: 1
+- 1993 magical(2n 5n 9n).
+- 1998 essence(1n 2c).
+- 1998 sambanhd(1n 2n 3nc).
+- 2005 sandscapes(2c 4c 5n)
+- 2006 sangeet 1().
+- 2006 sangeet 2()
+
+SINGLES(sambanhd)
+
+macroblank :
+- 2022 痛​み​の​永​遠 eternity of pain:
+
+   n: 1-2, 4, 9-10
+
+   c: 5, 9-10
+
+moktar  :
+- 2021 st(1nsl 2sl).
+
+john mclaughlin :
+- 1969 extrapolation:
+
+   n: 2-4, 7
+
+   c: 5
+- 1973 love(2c 5c).
+- 1978 electric(1n 5n).
+
+william onyeabor :
+- 1983 who:
+
+   n: 1-5, 7-9
+
+   s: 3, 7-8
+
+ltj bukem  :
+- 1996 the rebirth (3n 5ns).
+
+trevor watts :
+- 1979 endgame()
+- 1981 stella:
+
+   n: 1, 3-5, 8
+
+   c: 1, 3, 5, 7-8
+- 1993 a wider embrace(3ns 5n 9c 10nc).
+- 1993 moire(ns).
+
+leo svirsky  :
+- 2019 river without banks:
+
+   c: 1-2, 4-5
+
+frank foster :
+- 1972 loud minority(2n 3n).
+
+new young pony club  :
+- 2007 fantastic:
+
+n,s: 1-3, 5, 8
+
+grimes :
+- 2012 visions:
+
+   n: 2-3, 8, 10-11, 15
+
+   s: 2, 8
+
+uniting of opposites  :
+- 2018 mints(1n 2n).
+
+piri & tommy :
+- 2022 froge:
+
+   n: 2-3, 5
+
+   s: 2-3, 5, 12
+
+   l: 2, 5, 12
+
+jeremiah chu :
+- 2017 recordings:
+
+   c: 1-4, 6, 8-10

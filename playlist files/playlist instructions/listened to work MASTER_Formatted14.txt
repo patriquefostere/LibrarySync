@@ -1,0 +1,59 @@
+
+underworld:
+- # 1994 dubnobass check ends(1nsl 2ns 3nsl 4nsl 6nsl 7nsl).
+
+hugh masekela:
+-# 1972 home(1n 2nc 3nc 4bc 5ns 6n 8nc 9n).
+
+geo rip:
+- # 2018 u-udios(1ns 2nsl 4n 7nsl).
+
+hiroshi yoshimura:
+- # 1994 koto check ends(1c 2c 3c 4nc 5nc 7bc 9n 10c 11n 12bc 13bc 14bc 15bc 16bc).
+
+harold budd:
+- # 1976 pavillion(1abc 2bc 3ab 4bc).
+- # 1996 luxa(1bc 2bc 3ab 5bc 6ab 9b 10ab 11ab 12bc 13bc 14b 15bc).
+- 2003 la bella(bc all).
+
+alla rakha replace on drive:
+- shared check ends(2n 3n).
+- #param (1nc 2n 3nc 5s 7nc).
+
+thom yorke:
+- 2006 eraser(1nc 3n 4n 5c).
+- #2014 tomorrow check ends (1c 2nc 4n 5c 7b).
+- 2019 anima check ends (5nc).
+
+geinoh:
+- 1977 yamato(1b 4b).
+- 1986 ecophony(2b 3bc).
+
+yoshi:
+- 1985 off(r).
+
+ramuntcho:
+- 2016 ecoute(2n 3r 4n).
+
+kylie:
+- 2001 fever(r all but 3ns).
+
+robin guthrie:
+-# 2011 bordeaux(1b 2ab 3b 4b 5bc 6ab 7ab 8ab 9ab). 
+
+k leimer:
+- # 1983 imposed(1ns 2b 3bc 4n 5n 6b 7ab 8b 9ab) 
+
+william basinski:
+- 1(a).
+- 2(r).
+- 3(r).
+- 4(a).
+
+huerco:
+-# 2016 for check ends(1ab 2c 3abc 5n 6r 7r 8r 9bc).
+
+rahsaan:
+- 1970 st (2n 5ns 7n).
+
+done:-------------------- things under here get moved to the file of completed instructions

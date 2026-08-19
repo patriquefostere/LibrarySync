@@ -1,0 +1,101 @@
+cymande:
+- #album(1n 2c 4n 5nc 7ns 8n 9n 10r 11r 12n)
+
+leon thomas:
+- #album(1c 3n 4nc 5n 7c 8n 9s 10r 11r 12r 13r 14r 17c).
+
+led zep:
+- II(2n 3n 5n 6ns 9n).
+
+total science replace on drive CHECK ENDINGS SHUFFLE:
+-#1 (1nsl 2nsl 3r 4r 5nsl 6nsl 7-9r 11nsl 12r).
+-#2 (1ns 2nsl 3ns 4ns 5nsl 6nsl 7nsl 9ns 10r 11ns).
+
+weather report replace on drive:
+- #1971 st(2n 4c 5c 6nc).
+- #1973 sweet(1ns 4n 5nc).
+- 1974 mysterious(1ns 3n 7n).
+- 1975 tale(1ns 6r 8r).
+- 1976 black(1n 3n).
+
+lou reed:
+- st(1n 4n 5n 6n).
+- #transformer(1n 2n 4ns 5nc 6n 10n).
+- berlin().
+
+
+fairport:
+- #st(3ns 4nc 7n 11n 12r).
+- what(1c 5r 6n 11n).
+
+roots manuva REPLACE ON DRIVE:  
+- #run (2n 3ns 4n 9-11r 12n 13n 14n 16r 17r).
+- #duppy(2n 4n 6r 7n 11r 12r).
+
+massive attack
+- #blue (1n 2n 3nc 4nc 5nc 6n 8n).
+- #protection(1r 2c 4c 5c 6r 7r 9r 10r)
+- #mezzanine (1n 3nc 4n 5nc 8nc 9r 11nc).
+
+
+the doors replace on drive (don't delete albums):
+- 1967 strange(1n 3n 7n 9nc).
+-# 1967 st(1ns 4r 5r 6n 7n 9n 11n).
+- 1971 la(keep 10nc r all).
+
+jaco replace on drive:
+- birthday(1ns 5n 6n 8n 9n). DONE 
+- #st(1c 2ns 3c 4n 5c 7nc).
+- word(2n 3n).
+
+jurassic 5 check endings:
+- power:
+   n: 2, 3, 4, 5, 6, 7, 12
+   c: 3, 5, 9
+   s: 4, 6
+   r: 14, 15, 16
+- quality (2ns 5n 11ns 14r).
+
+urban flavour: check endings on shuffle
+- album:
+   n: 1, 2, 3, 4, 5, 6, 7, 8
+   s: 1, 2, 3, 4, 5, 6, 7, 8
+   l: 1, 7, 8
+
+inner vation: check endings
+- album:
+   n: 1, 2, 3, 4, 7, 8, 9, 10
+   s: 1, 2, 3, 4, 5, 7, 8, 9, 10
+   l: 2, 3, 5, 9, 10
+
+bailey:
+- check ends on shuffle:
+   n: 1, 3, 4, 5, 7, 10, 11, 13, 17, 18
+   s: 1, 3, 4, 5, 7, 10, 11, 13, 16, 17, 18
+   l: 3, 4, 5, 7, 10, 11, 13, 16, 17
+
+alla rakha:
+- shared remove claps(2n 3c).
+- param:  DONE
+   n: 2, 3, 5, 6, 7
+   c: 1, 2, 3, 4, 7
+
+done:-------------------- things under here get moved to the file of completed instructions
+
+dirty projectors:
+- 2011 (2n 4n 7c).
+- 2012 (2n 3n 4n).
+
+Megan Sue Hicks
+- marantha(1nc 6c 7r 8r 9r).
+
+dr john:
+- 1968 gris(1c 3n 6n 7c).
+- 1972 gumbo(r).	
+
+hannibal:
+-children(2ns 3nc).
+
+grandmaster flash:
+-message(r all but 7n).
+

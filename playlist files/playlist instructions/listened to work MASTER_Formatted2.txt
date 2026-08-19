@@ -1,0 +1,60 @@
+
+alice coltrane:
+- monastic: n( 4, 6, 7, 8, ) , c( 6, 7, 8, )
+- cosmic: n( 1, 2, ) , c( 2, )
+- hunt: n( 1, 2, 3, 4, 6, ) , c( 2, 3, )
+- journey(n(1-4), c(1,5)).
+- ptah: n( 1, 2, 3, ) , c( 1, 2, 3, )
+- uni(4c).
+- lord(1n 3-5r).
+
+nucleus:
+- 1970 elastic(2c 9n 10c 11n 12-13?)
+- 1970 live r
+- 1971 solar(3n 5n).
+- 1971 we'll(1ns 3c 4n 6n).
+
+rabih replcae all on drive
+
+air pocket:
+- @1:
+   n: 1, 2, 7, 8
+   c: 6, 8
+   s: 2
+
+alla rakha:
+- shared remove claps(2n 3c).
+- param(1c 2nc 3nc 4c 5n 6n 7nc).
+
+matt evans:
+- new: 
+   n: 1, 2, 3, 7
+   c: 2, 8, 9
+
+deux filles:
+- album: 
+   a: 4
+   n: 3
+   c: 1, 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+Remove from existing playlists:
+- L: state
+- C: gyro, joni(shades), amok, bush, kraftwerk(krystallo)
+- A: stars(lagging, twin peaks 2, a live song, broken harbours), boards(aqua),
+- N: mchlaughlin(friends), avalanches(noisy), santana(mother)
+
+grizzly keep single
+
+medeski martin:
+- @album:
+    n: 1, 4, 7, 13
+    c: 12, 13
+    r: 5, 6, 14
+
+klaus weiss:
+- @afire:
+    n: 1, 2, 3, 5, 10
+    s: 1, 2, 5
+- sub(2n 3nsl 5n 7ns).
+
+done:--------------------

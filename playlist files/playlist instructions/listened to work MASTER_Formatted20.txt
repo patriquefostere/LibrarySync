@@ -1,0 +1,82 @@
+
+turtles:
+- 1967 happy(6ns).
+
+tiny tim:
+- 1968 god(8n 12n). 
+
+k leimer:
+- 1983 music().
+
+kinlaw:
+- 2019 mezzi(2n 6s 7n).
+
+toshiyuki:
+- 1973 tsuchi(1ns 6ns).
+
+mulatu:
+- # 1965 new(1nc 4n 5nc 6nc 7ns 8n 9c 10n 11n 12ns 18nc 19c 20nc).
+
+solange:
+- # 2019 when(7nc 10c 11nc 14n 15bc).
+
+tangerine:
+- 1970 elect(r).
+
+henry cow:
+- #vol1(3n 4n 5n 6n 7n 8n).
+- 1973 leg().
+- 1974 unrest(2n).
+- 19754 in praise(1n 4n).
+
+slavonic:
+- russian(r).
+
+jeeny hval:
+- # 2015 apoc(3nc 5n 6nc 10b).
+
+jon hassell:
+- # 1983 aka(2ab 3bc 5bc).
+
+roxy:
+- 1972 st(1ns 2n 5n).
+
+jj cale:
+- # 1970 naturally(1n 2nc 3nc 5bc 7nc 8r 9nc 10ncb 11r 12nbc).
+- 1972 8(r).
+- # 1973 really(1nc 2nc 3n 4nc 5nc 8nc 9nc 11n).
+- # 1974 okie(1nc 5c 6r 7nc 9nc 11nc 12nc).
+- # 1976 troubadour(1nc 2n 3nc 4nc 6nc 7nc 8c 9n 10nc 11c).
+
+brother ah:
+- # the sea(1n 2r 3n 4n 7n 9nc).
+- mediation(2c 5c 6c).
+- searching(1bc).
+
+wu tang:
+- 1993 36:
+   n: 2, 4-11
+
+jungle tekno:
+- 7:
+   n: 3, 5, 7-9
+   s: 3-9
+   l: 4-6, 8
+   r: 10-11
+
+gong:
+- 1971 camembert().
+- 1973 angel:
+   n: 2, 4, 8, 12-14
+   c: 4, 10
+   s: 8, 12-14
+- 1973 flying(3n).
+- 1974 you (4ns 5ns).
+
+done:-------------------- things under here get moved to the file of completed instructions
+
+busdriver:
+- 2002 temp(2ns 3n 4ns ).
+- 2018 elec(r).
+
+zappa 

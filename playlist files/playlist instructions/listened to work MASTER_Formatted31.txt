@@ -1,0 +1,69 @@
+
+my robot friend ADD :
+- # 2004 hot action(2s 3ns 4n 9ns 10n 12n 16nc 19ns 22nc).
+- # 2006 dial 0(3ns 4n 6nsl 7ns 8nsl 9ns 13ns) 
+
+wagon christ ADD :
+- # 2001 Musipal(1n 2n 3nc 5ns 6n 8s 11s 13nsl) 
+
+funkadelic ADD :
+- 1971 maggot brain(2n).
+
+sharon jones & the dap kings ADD :
+- 2005 naturally(1n 2n 4ns 5nc 6ns 7n 8n).
+
+gary numan ADD
+- 1979 replicas(2nc 3n 4n).
+
+the cure ADD :
+- 1980 seventeen 1(3nc 7n 8n).
+- 1980 seventeen 2(1n 2n).
+
+cornelius ADD :
+- 1997 fantasma check ends(2n).
+
+bobby caldwell ADD :
+- 1980 cat(6nc).
+
+brenda lee ADD :
+- 1960 emotions(1nc 3nc 6n 8nc 12nc).
+	
+cio dor ADD :
+- 2012 ur/uhr(1nc 2nc 3ns).
+
+nadi qamar ADD :
+- 1975 the nuru taa(c all).
+
+randy newman ADD :
+- 1977 little criminals(1n 2-12r).
+
+beefheart REPLACE : 
+- # 1967 safe(1ns 2ns 3n 5n 6n 7n 8n 10n 17n 18n).
+- 1968 strictly(r).
+- 1969 trout().
+- 1970 lick(1n 3n 6n 11n).
+- 1971 mirror(1n 2n 3n).
+- # 1972 clear(1ns 2ns 3nc 4n 5nc 6n 7n 8n 10n).
+- 1972 the spot(r).
+- 1974 blue(1n 6n).
+- 1974 uncon(r).
+- # 1976 bat(2nc 3nc 4c 7n 9n 11n 13n)
+- 1978 shiny(r).
+- 1982 ice (1n 2n 3n 8n 9n)
+
+
+pink floyd REPLACE :
+- 1968 a saucer (2n 3c 6nc).
+- 1971 meddle (2c 3n 4nc). 
+- # 1973 dark side CHECK ENDS(3n 4n 5n 7nc 8n). 
+- 1975 wish( 4c).
+- 1977 animals().
+- 1979 the wall().
+
+jon gibson REPLACE :
+- 1977 songs and melodies(3c 5c). DONE
+
+
+
+done:-------------------- todo: things under here get moved to the file of completed instructions
+

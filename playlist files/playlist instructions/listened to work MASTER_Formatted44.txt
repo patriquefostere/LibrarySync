@@ -1,0 +1,75 @@
+
+charli xcx REPLACE:
+- 2013 true romance(1ns 2ns 3sl 4n 5n 6ns 7ns 8ns 9ns 11n)
+- 2019 charli(12c 13ns)
+- 2020 how im feeling now(2ns 3ns 4s 5ns 7ns 8s 10sl) 
+- 2022 crash(3ns 4ns 5nsl 7sl 10nsl 12ns 13sl 14s 15s add to post 2015 and charli xcx)
+- 2024 brat(5sl 6sl 10s 11ns 12sl 13sl 16sl) 
+singles(2013(2), 2019(12), 2020(5),  2022(5, 10, 12, 13), 2024(6)
+good whole(2013, crash)
+
+madlib ADD :
+- 2021 sound ancestors(4nc).
+
+
+sweet trip ADD :
+- 2003 design(2ns 6sl 9n 10n 12ns)
+
+
+brian jonestown massacre ADD :
+- 1995 methodrone(1n 2n 3n 5n 8nc 9n 14n 16n) 
+   
+
+snapped ankles ADD:
+- 2025 hard times(1sl 2ns 3ns)
+
+dj laz:
+- 1991 st(1ns 8ns)
+- 1996 king of bass( 4ns 7n)
+singles(1991(1))
+
+
+moondog REPLACE:
+- 1953 moondog and his friends(5nc 7c 10nc 12nc 13c 14c)
+- 1956 st(4c 8c)
+- 1969 st (6n).
+- 1971 st 2(2c 3nc	5nc 6nc 7nc 9nc  15nc 24nc 26c).
+- 1977 in europe(1c 5c)
+- 1978 h'art(2c)
+- 1991 elpmas(1n 3n 4nc 6nc )
+- 1995 muffathalle munich fm(1n 12n)
+- 1995 big band(
+- 1997 sax pax(
+- 2004 bracelli( 
+singles(1969 st(6), st 2(5)
+create moondog playlist
+
+
+drinks ADD :
+- 2018 hippo lyte(1c 3n 6nc 7n 9n 11n 12n)
+
+
+fela kuti REPLACE :
+- 1971 w. ginger baker(3ns)
+- 1971 why black(1n)
+- 1972 roforo fight(1ns 3n 5n)
+- 1972 shakara(1n 2ns)
+- 1973 gentleman(1n 3n)
+- 1973 open and close(1n 2ns 3ns  4n )
+- 1975 expensive shit/he miss road(1n 2n 3nc 4nc 5n)
+- 1975 alagbon close(1nc 2nc)
+- 1976 zombie(1n 2nc 3nc)
+- 1981 coffin for head of state(1nc 2nc)
+- 1984 original sufferhead(1n 2nc 3n)
+- 1986 teacher(2n 3ns)
+good whole(shakara, roforo, open and close, coffin, original)
+singes(gentleman(1), zombie(1) , shakara(2), roforo(1), expensive(2))
+create fela playlist	
+
+ADd:
+jim e brown
+
+REPLACE:
+machine girl
+
+###done:-------------------- todo: things under here get moved to the file of completed instructions

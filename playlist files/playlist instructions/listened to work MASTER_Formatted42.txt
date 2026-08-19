@@ -1,0 +1,332 @@
+
+nas REPLACE:
+- 1994 illmatic(2n 3nc 4nc 5n 6nc 7nc 8nc 9n 10nc)
+singles(10)
+
+roger fakhr :
+- 1976 fine anyway: done
+   n: 2-7, 9, 11, 13, 17-18
+   c: 2-3, 5-6, 11
+   s: 17
+good whole(n)
+singles(17)
+
+
+the fires of ork ADD :
+- 1993 st(1ns 3n 4c 5ns)
+
+
+
+brooke candy ADD: 
+- 2019 sexorcism(2nc 3n 12s)
+singles(12)
+
+dengue ADD :
+- 2016 siete raices(4ns 5ns).
+- 2019 zenit(2n 3n 5ns 7nsl 9nsl 10n 12nc)
+- 2020 fiebre(1ns 2n 3ns 4ns 6ns 7n)
+
+the buttress ADD :
+- 2023 endofunctor(1ns 4ns 7ns 8n 9nc)
+- 2017 brutus(ns)
+- 2014 behind every great man(1ns 3ns 4ns 6n 7ns 8n 9n) 
+singles(2023(7), brutus, 2014(4))
+good whole(2014)
+
+serge gainsbourg :
+- 1969 jane(1nc 2nc 6nc 10nc).
+singles(1)
+
+fleetwood mac :
+- 1969 the pious bird of good omen(5nc 10c).
+singles(5)
+
+
+men i trust ADD :
+- 2019 oncle jazz(2nc 4n 5c 6nc 7nc 8nc 9nc 10nc 15nc 18nc 19n 20nc 22c)
+singles(6)
+
+
+dead or alive REPLACE:
+- 2016 sophisticated boom box( 11n)
+- 1983 sophisticated boom boom(4n 8ns 9ns 10ns)
+
+television ADD :
+- 1977 marquee moon(1n 2n 4n 5n 7n 8n 9n)
+singles(4n)
+
+the daughters of eve ADD:
+- 1965 hey lover(1n)
+singles(1)
+
+
+william devaughn ADD :
+- 1974 be thankful for what you've got(1nc 2c 6nc )
+singles(6)
+
+gabor szabo REPLACE :
+- 1966 jazz(1nc 2nc 5nc 8n 9nc 10nc 11nc)
+- 1968 dreams(1nc 2nc 3nc 6nc 7nc)
+- 1972 small(2nc 3nc 8c)
+- 1975 macho(2nc 6nc).
+
+rl burnside ADD :
+- 1998 come on in(2c 3ns 4n 5ns 7ns 10n 11n).
+goodwhole(n)
+singles(10)
+
+	
+
+confidence man :
+- 2018 confident music for confident people(4sl) 
+- 2022 TILT(2ls 4sl 5sl 6nsl 11sl)
+singles(tilt(11), 
+
+orbital :
+- 1993 orbital 2 (7s, 9ns) 
+singles(9)
+
+
+air :
+- 1998 moon safari(1nc 2c 3c 5nc).
+singles(1)
+
+yung lean ADD :
+- 2013 lavender(2nc 3c).
+singles(2)
+
+eartheater :
+- 2018 trinity (1ns 2ns 3ns 4nc 7nc 8n 9ns 10ns)
+singles(3)
+- 2023 powders(2nc 4nc 7nc 8ns 9c)
+singles(2)
+
+
+truby trio ADD :
+- 2003 elevator music(7nsly).
+singles(7)
+
+
+
+
+###done:-------------------- todo: things under here get moved to the file of completed instructions
+
+ayesha erotica  :
+- 2017 fresh meat(3nsl 5sl 7sl)
+singles(3)
+
+roger fakhr :
+- 1976 fine anyway: done
+   n: 2-7, 9, 11, 13, 17-18
+   c: 2-3, 5-6, 11
+   s: 17
+good whole(n)
+singles(17)
+
+serge gainsbourg :
+- 1969 jane(1nc 2nc 6nc 10nc).
+singles(1)
+
+
+fleetwood mac :
+- 1969 the pious bird of good omen(5nc 10c).
+singles(5)
+
+
+eartheater :
+- 2018 trinity: 
+   n: 1-4, 7-10
+   c: 4, 7
+   s: 1-3, 9-10
+- 2023 powders: 
+   n: 2, 4, 7-8
+   c: 2, 4, 7, 9
+   s: 8
+singles(2018(3), 2023(2))
+
+confidence man :
+- 2022 TILT: 
+   n: 6
+   l,s: 2, 4-6, 11
+singles(11)
+
+
+yung lean :
+- 2013 lavender(2nc 3c).
+singles(2)
+
+the trammps :
+- 1976 disco inferno().
+
+OSCOB :
+- 2022 praise: 
+   n: 1-2, 4, 6-7
+   c: 1-7, 10, 13
+good whole(c)
+
+babatunde :
+- 1960 drums: 
+   n: 1-3, 5-7, 9
+good whole(n)
+
+basil kirchin:
+- 1966 abstractions: 
+   n: 1-2, 4-5, 13, 16, 18
+   c: 2, 5-6, 17
+
+beach house:
+- 2006 st( 6nc 8c).
+- 2015 depression: 
+   n: 1, 3, 8
+   c: 1, 3-4, 6-9
+GOOD WHOLE (2015 calm)
+singles(2015 3)
+
+blackstar :
+- 1995 alaska ride(singles sl)
+
+charli xcx  :
+- 2024 brat: 
+   n: 14
+   l: 2, 6, 12-13, 17
+   s: 3, 5, 7, 12-14, 17
+singles(6)
+
+dick slessig  :
+- 2004 wichita(1b).
+good whole(1b).
+
+dj hype  :
+- 1994 roll(singles sl)
+
+flowdan: 
+- 2023 shella(1sl)
+singles(1)
+
+heart :
+- 1975 dreamboat annie: 
+   n: 2-3, 5, 8-9
+   c: 4-5
+good whole(n)
+singles(2)
+
+hiroshi sato :
+- 1982 awakening(3nc 10nc 11n).
+singles(10)
+
+james brown :
+- 1974 damn: 
+   n: 1-6, 8
+   c: 4, 8
+   s: 3, 6
+good whole(n)
+singles(3)
+
+jon hassell:
+- 1980 fourth world 1(1c 2c 3c 4nc)
+- 1983 aka(2c 3c 5nc 7c)
+good whole(both c)
+
+
+karin krog:
+- 1986 freestyle: 
+   c: 1-6, 9
+good whole(c)
+singles(5)
+
+kool and the gang :
+- 1974 light: 
+   n: 2, 4-7
+   c: 5-6, 8-9
+good whole(nc)
+singles(2)
+
+lil mariko :
+- 2021 st: 
+   n: 1, 5-7
+   s: 2-3, 5-6
+singles(1)
+
+miles davis : 
+- 1959 kind of blue: 
+   n: 1-2, 4
+   c: 1-5
+   b: 1, 3, 5
+- 1960 sketches of spain(1c 2n 3ns 5nc).
+- 1969 bitches brew().
+- 1969 in a silent way().
+- 1972 on the corner(2n 3n).
+- 1986 tutu().
+good whole(1959(nc), 1960(nc)).
+
+mort garson  :
+- 1963 our day nc
+- 1968 love sounds(5nc).
+- 1975 ataraxia: 
+   n: 1, 3-4, 6, 8
+   s: 3-4, 8
+- 1976 plantasia: 
+   n: 1-3, 5-10
+   c: 2-3, 5-10
+- 2020 music from: 
+   n: 4, 12, 14, 16-18
+   c: 14, 17
+- 1971 black mass/lucifer(2n 6n 7c)
+good whole(plantasia)
+
+nia archives :
+- 2022 forbidden feelingz: 
+   n: 3-4
+   l,s: 2-4
+singles(4)
+
+project pat :
+- 2001 mista don't play: 
+   n: 3-6, 11-12
+   c: 11
+singles(5) 
+
+smoke city :
+- 1997 flying away: 
+   n: 1-4, 6-7, 9-10
+   c: 3, 6, 9-10
+   l,s: 7
+good whole(n)
+singles(1)
+	
+sza :
+- 2014 Z(8nc).
+singles(8)
+
+takashi kokubo :
+- 1993 jamaica().
+good whole(ambient)
+
+the dream team :
+- stamina(1l 2nsl 6nsl)
+singles(6)
+
+the flamingos :
+- 1959 flamingo serenade: 
+   n: 1-3, 5-6, 8-9, 11
+   c: 1-3, 5-6, 8, 11
+good whole(nc)
+singles(1)
+
+war :
+- 1975 why(7n).
+singles(7)
+
+roslavets ADD :
+
+yaeji :
+- 2023 with a hammer: 
+   n: 1-5, 7-10
+   c: 1, 12-13
+   l: 3
+   s: 2-3, 8-10
+good whole(ns)
+
+xtc  :
+- 1995 reload(2nsl)
+singles(2)
