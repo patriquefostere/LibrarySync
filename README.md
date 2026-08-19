@@ -1,3 +1,6 @@
+# ideas for improvements
+- report method should also run scans for whatever devices are connected
+
 # LibrarySync
 
 Offline-aware command-line tools for tracking and copying a large `Music/` library across:
